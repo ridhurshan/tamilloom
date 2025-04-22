@@ -5,11 +5,29 @@ import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import { store } from './redux/store/store';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {createBrowserRouter,RouterProvider} from "react-router-dom";
+import Page from './pages/page';
+import Home from './pages/home';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    // loader: rootLoader,
+  },  
+  {
+    path: "/page",
+    element: <Page />,
+    // loader: rootLoader,
+  }
+
+])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
+    <Provider store={store}>
+        <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 )

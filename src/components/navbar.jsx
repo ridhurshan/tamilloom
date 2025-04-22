@@ -15,19 +15,22 @@ function NavScrollExample() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#">Tamil LOom</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Tamil LOom</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
+            style={{ maxHeight: '100px',fontSize:"15px" ,fontWeight:"bold"}}
             navbarScroll
           >
-            {/* <Nav.Link as={Link} to="/page">Latest</Nav.Link> */}
-            {/* <Link to="/">Hosadasme</Link> */}
-            <Nav.Link href="#action1">Local</Nav.Link>
-            <Nav.Link href="#action2">International</Nav.Link>
-            <Nav.Link href="#"> Sports</Nav.Link>
+            <Nav.Link as={Link} to="/page">உள்ளூர்</Nav.Link>
+            <Nav.Link href="#action1">உலகம்</Nav.Link>
+            <Nav.Link href="#action2">வணிகம்</Nav.Link>
+            <Nav.Link href="#action1">தொழில்நுட்பம்</Nav.Link>
+            <Nav.Link href="#action2">ஆரோக்கியம்</Nav.Link>
+            <Nav.Link href="#"> நிகழ்வு</Nav.Link>
+            <Nav.Link href="#">விளையாட்டு </Nav.Link>
+            <Nav.Link href="#"> சினிமா</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

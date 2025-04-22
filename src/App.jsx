@@ -1,32 +1,27 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Papa from 'papaparse';
 
 import Navbar from "./components/navbar";
 import Carousel from "./components/carousel";
 import NewsCard from "./components/newsCard";
 import NewsCard2 from "./components/newsCard2";
-import ImageFram from './components/imageFram';
+import VideoPlayer from './components/VideoPlayer';
+import Video from "./Images/vid1.mp4";
 import Topic from './components/topic';
 import ImageNews from "./components/imageNews";
 import Footer from './components/footer';
-import Modal from './components/model'; // ✅ IMPORT MODAL
+import Modal from './components/model';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Page from "./pages/page"
-
-// import UncontrolledCarousel from "./components/carousel"; // ✅ YOUR component
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setWorld, setLocal } from './redux/store/newsSlice.js';
 
 function App() {
-  const [world, setWorld] = useState([]);
-  const [local, setLocal] = useState([]);
-  // const [world, setWorld] = useState([]);
-  // const [world, setWorld] = useState([]);
-  // const [world, setWorld] = useState([]);
-  // const [world, setWorld] = useState([]);
+  const dispatch = useDispatch();
+  const world = useSelector((state) => state.news.world);
+  const local = useSelector((state) => state.news.local);
 
-  console.log("App mounted"); // 👈 Does this appear?
+  console.log("App mounted");
 
   useEffect(() => {
     console.log("Parsing started ✅");
@@ -43,306 +38,322 @@ function App() {
           const filteredLocal = results.data.filter(row =>
             row.section?.trim().toLowerCase() === "local"
           );
-          setWorld(filteredWorld);
-          setLocal(filteredLocal);
-          console.log("Filtered world ✅", filteredWorld);
+          dispatch(setWorld(filteredWorld));
+          dispatch(setLocal(filteredLocal));
         },
         error: (err) => {
           console.error("PapaParse error ❌", err);
         }
       }
     );
-  }, []);
+  }, [dispatch]);
 
-  
-  
+  useEffect(() => {
+    console.log("world updated from redux ✅", world);
+  }, [world]);
+
+  useEffect(() => {
+    console.log("local updated from redux ✅", local);
+  }, [local]);
 
   return (
-<div>
-    <Router>
-      <Routes>
-        <Route path="/page" element={<Page />} />
-      </Routes>
-    </Router>
-
-
-    <div className="parent">
-      <div className="div1"><Navbar /></div>
-      <div className="div2">      
-      <Carousel world={world}/> 
-        <Topic title="உலகம்"/>
-            {local.slice(0,5).map((item, index) => (
-                  <NewsCard
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}
-      </div> 
-      <div className="div3"><ImageFram />
-      <Carousel world={world}/> 
-      </div>
-      <div className="div4"><Topic />
-      {local.slice(0,4).map((item, index) => (
-                  <NewsCard
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}<br></br><Topic/>
-      <Carousel world={world}/> 
-      </div>
-      <div className="div5">
-      {world.slice(0, 1).map((item, index) => (
-                  <ImageNews
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}
-      
-      </div>
-      <div className="div6">      
-      {world.slice(0, 1).map((item, index) => (
-                  <ImageNews
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}</div>
-      <div className="div7">
-      {world.slice(1, 2).map((item, index) => (
-                  <ImageNews
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}
-      </div>
-      <div className="div8">      
-      {world.slice(2, 3).map((item, index) => (
-                  <ImageNews
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}</div>
-      <div className="div9">
-      <Topic className="sticky-topic"/>
-      {local.slice(0,4).map((item, index) => (
-              <NewsCard
-                key={index}
-                title={item.title.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
-                image={item.image}
-              />
-            ))}
-      </div>
-      <div className="div10">
-      <Topic className="sticky-topic"/>
-        {local.slice(0,4).map((item, index) => (
-              <NewsCard
-                key={index}
-                title={item.title.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
-                image={item.image}
-              />
-            ))}
-      </div>
-
-      <div className="div11">
-        <Topic />
-        {local.slice(0,4).map((item, index) => (
-          <NewsCard2
-            key={index}
-            title={item.title.length > 100
-                ? item.title.slice(0, 100) + "..."
-                : item.title
-            }
-            description={item.description.length > 100
-              ? item.description.slice(0, 100) + "..."
-              : item.description
-            }
-            image={item.image}
+    <div>
+      <div className="parent">
+        <div className="div1"><Navbar /></div>
+        <div className="div2">      
+          <Carousel world={world} /> 
+          <Topic title="உலகம்"/>
+          {local?.slice(0,5).map((item, index) => (
+            <NewsCard
+              key={index}
+              title={item.title?.length > 100
+                  ? item.title.slice(0, 100) + "..."
+                  : item.title
+              }
+              description={item.description?.length > 100
+                ? item.description.slice(0, 100) + "..."
+                : item.description
+              }
+              image={item.image}
+            />
+          ))}
+        </div> 
+        <div className="div3">
+        <VideoPlayer 
+            src={Video}
+            controls={false}
+            autoPlay={true}
+            loop={true}
+            // You can override default styles if needed
+            style={{
+              height: '150px',
+              width: '850px'
+            }}
           />
-        ))}
-      </div>
-
-      <div className="div12"><Topic />
-        {local.slice(0,5).map((item, index) => (
-            <NewsCard2
+          <Carousel world={world} /> 
+        </div>
+        <div className="div4">
+          <Topic title="உள்ளூர்"/>
+          {local?.slice(0,4).map((item, index) => (
+            <NewsCard
               key={index}
-              title={item.title.length > 100
+              title={item.title?.length > 100
                   ? item.title.slice(0, 100) + "..."
                   : item.title
               }
-              description={item.description.length > 100
+              description={item.description?.length > 100
                 ? item.description.slice(0, 100) + "..."
                 : item.description
               }
               image={item.image}
             />
           ))}
-      </div>
-      <div className="div13"><Topic />
-      {local.slice(0,5).map((item, index) => (
-            <NewsCard2
+          <br/>
+          <Topic/>
+          <Carousel world={world} /> 
+        </div>
+        <div className="div5">
+          {world?.slice(0, 1).map((item, index) => (
+            <ImageNews
               key={index}
-              title={item.title.length > 100
+              title={item.title?.length > 100
                   ? item.title.slice(0, 100) + "..."
                   : item.title
               }
-              description={item.description.length > 100
+              description={item.description?.length > 100
                 ? item.description.slice(0, 100) + "..."
                 : item.description
               }
               image={item.image}
             />
           ))}
-      </div>
-      <div className="div14"><Topic/></div>
+        </div>
+        <div className="div6">      
+          {world?.slice(0, 1).map((item, index) => (
+            <ImageNews
+              key={index}
+              title={item.title?.length > 100
+                  ? item.title.slice(0, 100) + "..."
+                  : item.title
+              }
+              description={item.description?.length > 100
+                ? item.description.slice(0, 100) + "..."
+                : item.description
+              }
+              image={item.image}
+            />
+          ))}
+        </div>
+        <div className="div7">
+          {world?.slice(1, 2).map((item, index) => (
+            <ImageNews
+              key={index}
+              title={item.title?.length > 100
+                  ? item.title.slice(0, 100) + "..."
+                  : item.title
+              }
+              description={item.description?.length > 100
+                ? item.description.slice(0, 100) + "..."
+                : item.description
+              }
+              image={item.image}
+            />
+          ))}
+        </div>
+        <div className="div8">      
+          {world?.slice(2, 3).map((item, index) => (
+            <ImageNews
+              key={index}
+              title={item.title?.length > 100
+                  ? item.title.slice(0, 100) + "..."
+                  : item.title
+              }
+              description={item.description?.length > 100
+                ? item.description.slice(0, 100) + "..."
+                : item.description
+              }
+              image={item.image}
+            />
+          ))}
+        </div>
+        <div className="div9">
+          <Topic title="விளையாட்டு"/>
+          {local?.slice(0,4).map((item, index) => (
+            <NewsCard
+              key={index}
+              title={item.title?.length > 100
+                  ? item.title.slice(0, 100) + "..."
+                  : item.title
+              }
+              description={item.description?.length > 100
+                ? item.description.slice(0, 100) + "..."
+                : item.description
+              }
+              image={item.image}
+            />
+          ))}
+        </div>
+        <div className="div10">
+          <Topic title="தொழில்நுட்பம்"/>
+          {local?.slice(0,4).map((item, index) => (
+            <NewsCard
+              key={index}
+              title={item.title?.length > 100
+                  ? item.title.slice(0, 100) + "..."
+                  : item.title
+              }
+              description={item.description?.length > 100
+                ? item.description.slice(0, 100) + "..."
+                : item.description
+              }
+              image={item.image}
+            />
+          ))}
+        </div>
 
-      <div className="div15">
-        <div className="div151"><Topic /></div>
-        <div className="div152">            
-        {world.slice(0, 2).map((item, index) => (
-                  <NewsCard
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}</div>
-        <div className="div153">        
-             {world.slice(2, 4).map((item, index) => (
-                  <NewsCard
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}
+        <div className="div11">
+          <Topic title="கட்டுரை"/>
+          {local?.slice(0,4).map((item, index) => (
+            <NewsCard2
+              key={index}
+              title={item.title?.length > 100
+                  ? item.title.slice(0, 100) + "..."
+                  : item.title
+              }
+              description={item.description?.length > 100
+                ? item.description.slice(0, 100) + "..."
+                : item.description
+              }
+              image={item.image}
+            />
+          ))}
         </div>
-        <div className="div154">
-           {world.slice(4, 6).map((item, index) => (
-                  <NewsCard
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}
+
+        <div className="div12">
+          <Topic title="வணிகம்"/>
+          {local?.slice(0,5).map((item, index) => (
+            <NewsCard2
+              key={index}
+              title={item.title?.length > 100
+                  ? item.title.slice(0, 100) + "..."
+                  : item.title
+              }
+              description={item.description?.length > 100
+                ? item.description.slice(0, 100) + "..."
+                : item.description
+              }
+              image={item.image}
+            />
+          ))}
         </div>
-        <div className="div155">
-              {world.slice(6, 8).map((item, index) => (
-                  <NewsCard
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}
+        <div className="div13">
+          <Topic title="நிகழ்வு"/>
+          {local?.slice(0,5).map((item, index) => (
+            <NewsCard2
+              key={index}
+              title={item.title?.length > 100
+                  ? item.title.slice(0, 100) + "..."
+                  : item.title
+              }
+              description={item.description?.length > 100
+                ? item.description.slice(0, 100) + "..."
+                : item.description
+              }
+              image={item.image}
+            />
+          ))}
+        </div>
+        <div className="div14"><Topic/></div>
+
+        <div className="div15">
+          <div className="div151"><Topic title="ஆரோக்கியம்"/></div>
+          <div className="div152">            
+            {world?.slice(0, 2).map((item, index) => (
+              <NewsCard
+                key={index}
+                title={item.title?.length > 100
+                    ? item.title.slice(0, 100) + "..."
+                    : item.title
+                }
+                description={item.description?.length > 100
+                  ? item.description.slice(0, 100) + "..."
+                  : item.description
+                }
+                image={item.image}
+              />
+            ))}
           </div>
-      </div>
+          <div className="div153">        
+            {world?.slice(2, 4).map((item, index) => (
+              <NewsCard
+                key={index}
+                title={item.title?.length > 100
+                    ? item.title.slice(0, 100) + "..."
+                    : item.title
+                }
+                description={item.description?.length > 100
+                  ? item.description.slice(0, 100) + "..."
+                  : item.description
+                }
+                image={item.image}
+              />
+            ))}
+          </div>
+          <div className="div154">
+            {world?.slice(4, 6).map((item, index) => (
+              <NewsCard
+                key={index}
+                title={item.title?.length > 100
+                    ? item.title.slice(0, 100) + "..."
+                    : item.title
+                }
+                description={item.description?.length > 100
+                  ? item.description.slice(0, 100) + "..."
+                  : item.description
+                }
+                image={item.image}
+              />
+            ))}
+          </div>
+          <div className="div155">
+            {world?.slice(6, 8).map((item, index) => (
+              <NewsCard
+                key={index}
+                title={item.title?.length > 100
+                    ? item.title.slice(0, 100) + "..."
+                    : item.title
+                }
+                description={item.description?.length > 100
+                  ? item.description.slice(0, 100) + "..."
+                  : item.description
+                }
+                image={item.image}
+              />
+            ))}
+          </div>
+        </div>
 
-      <div className="div16"><Topic />
-          {world.slice(0,4).map((item, index) => (
-                  <NewsCard
-                    key={index}
-                    title={item.title.length > 100
-                        ? item.title.slice(0, 100) + "..."
-                        : item.title
-                    }
-                    description={item.description.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                    }
-                    image={item.image}
-                  />
-                ))}
-      </div>
-      <div className="div17"><Footer /></div>
+        <div className="div16">
+          <Topic title="சினிமா"/>
+          {world?.slice(0,4).map((item, index) => (
+            <NewsCard
+              key={index}
+              title={item.title?.length > 100
+                  ? item.title.slice(0, 100) + "..."
+                  : item.title
+              }
+              description={item.description?.length > 100
+                ? item.description.slice(0, 100) + "..."
+                : item.description
+              }
+              image={item.image}
+            />
+          ))}
+        </div>
+        <div className="div17"><Footer /></div>
 
-      <Modal />
-    </div>
+        <Modal />
+      </div>
     </div>
   );
 }
