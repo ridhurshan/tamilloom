@@ -36,7 +36,7 @@
   }
   
   /* SMALL CENTER CARDS */
-  .div5 {
+  /* .div5 {
     grid-area: 10 / 6 / 12 / 11;
     background-color: rgb(189, 117, 88);
     max-height: 200px;
@@ -48,6 +48,9 @@
     max-height: 200px;
     overflow: hidden;
   }
+  .div5, .div6 {
+    grid-row-start: 10; /* Explicitly start after div14 */
+  /* }
   .div7 {
     grid-area: 13 / 6 / 15 / 11;
     background-color: rgb(240, 148, 11);
@@ -59,7 +62,32 @@
     background-color: rgb(97, 22, 146);
     max-height: 200px;
     overflow: hidden;
-  }
+  } */ 
+
+  /* Adjust the div5-div8 layout */
+.div5 {
+  grid-area: 9 / 6 / 11 / 11; /* Starts at row 9 */
+  background-color: rgb(189, 117, 88);
+  min-height: 200px;
+}
+
+.div6 {
+  grid-area: 9 / 11 / 11 / 15;
+  background-color: rgb(62, 129, 88);
+  min-height: 200px;
+}
+
+.div7 {
+  grid-area: 11 / 6 / 13 / 11; /* Starts at row 11 */
+  background-color: rgb(240, 148, 11);
+  min-height: 200px;
+}
+
+.div8 {
+  grid-area: 11 / 11 / 13 / 15;
+  background-color: rgb(97, 22, 146);
+  min-height: 200px;
+}
   
   /* BOTTOM LAYOUTS */
   .div9 {
@@ -82,8 +110,12 @@
     grid-area: 21 / 14 / 27 / 21;
     background-color: antiquewhite;
   }
-  .div14 {
+  /* .div14 {
     grid-area: 12 / 6 / 13 / 15;
+    background-color: rgb(118, 158, 139);
+  } */
+  .div14 {
+    grid-area: 13 / 6 / 15 / 15; /* Starts exactly where div3 ends */
     background-color: rgb(118, 158, 139);
   }
   .div15 {
@@ -109,7 +141,7 @@
     grid-row-gap: 8px;
     }
     
-    .div151 { grid-area: 1 / 1 / 2 / 3; background-color: aqua;}
+    .div151 { grid-area: 1 / 1 / 2 / 3; background-color: aqua; margin: 0;padding: 0;}
     .div152 { grid-area: 2 / 1 / 5 / 2; background-color: blue;}
     .div153 { grid-area: 5 / 1 / 8 / 2;background-color: brown; }
     .div154 { grid-area: 2 / 2 / 5 / 3; background-color: cadetblue;}

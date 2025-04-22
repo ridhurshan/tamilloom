@@ -12,6 +12,9 @@ import ImageNews from "./components/imageNews";
 import Footer from './components/footer';
 import Modal from './components/model'; // ✅ IMPORT MODAL
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Page from "./pages/page"
+
 // import UncontrolledCarousel from "./components/carousel"; // ✅ YOUR component
 
 
@@ -55,14 +58,20 @@ function App() {
   
 
   return (
+<div>
+    <Router>
+      <Routes>
+        <Route path="/page" element={<Page />} />
+      </Routes>
+    </Router>
+
+
     <div className="parent">
       <div className="div1"><Navbar /></div>
-      <div className="div2"><Topic /></div>
-      <div className="div2">
+      <div className="div2">      
       <Carousel world={world}/> 
-       <br />
-        <Topic />
-            {world.map((item, index) => (
+        <Topic title="உலகம்"/>
+            {local.slice(0,5).map((item, index) => (
                   <NewsCard
                     key={index}
                     title={item.title.length > 100
@@ -76,13 +85,12 @@ function App() {
                     image={item.image}
                   />
                 ))}
-         <Topic />
       </div> 
       <div className="div3"><ImageFram />
       <Carousel world={world}/> 
       </div>
-      <div className="div4"><Topic /><br />
-      {world.map((item, index) => (
+      <div className="div4"><Topic />
+      {local.slice(0,4).map((item, index) => (
                   <NewsCard
                     key={index}
                     title={item.title.length > 100
@@ -95,9 +103,9 @@ function App() {
                     }
                     image={item.image}
                   />
-                ))}
+                ))}<br></br><Topic/>
       <Carousel world={world}/> 
-      <Topic /></div>
+      </div>
       <div className="div5">
       {world.slice(0, 1).map((item, index) => (
                   <ImageNews
@@ -162,7 +170,8 @@ function App() {
                   />
                 ))}</div>
       <div className="div9">
-      {local.map((item, index) => (
+      <Topic className="sticky-topic"/>
+      {local.slice(0,4).map((item, index) => (
               <NewsCard
                 key={index}
                 title={item.title.length > 100
@@ -178,7 +187,8 @@ function App() {
             ))}
       </div>
       <div className="div10">
-        {local.map((item, index) => (
+      <Topic className="sticky-topic"/>
+        {local.slice(0,4).map((item, index) => (
               <NewsCard
                 key={index}
                 title={item.title.length > 100
@@ -196,7 +206,7 @@ function App() {
 
       <div className="div11">
         <Topic />
-        {world.map((item, index) => (
+        {local.slice(0,4).map((item, index) => (
           <NewsCard2
             key={index}
             title={item.title.length > 100
@@ -213,7 +223,7 @@ function App() {
       </div>
 
       <div className="div12"><Topic />
-        {local.map((item, index) => (
+        {local.slice(0,5).map((item, index) => (
             <NewsCard2
               key={index}
               title={item.title.length > 100
@@ -229,7 +239,7 @@ function App() {
           ))}
       </div>
       <div className="div13"><Topic />
-      {local.map((item, index) => (
+      {local.slice(0,5).map((item, index) => (
             <NewsCard2
               key={index}
               title={item.title.length > 100
@@ -244,12 +254,12 @@ function App() {
             />
           ))}
       </div>
-      <div className="div14"></div>
+      <div className="div14"><Topic/></div>
 
       <div className="div15">
         <div className="div151"><Topic /></div>
         <div className="div152">            
-        {world.slice(1, 4).map((item, index) => (
+        {world.slice(0, 2).map((item, index) => (
                   <NewsCard
                     key={index}
                     title={item.title.length > 100
@@ -264,7 +274,7 @@ function App() {
                   />
                 ))}</div>
         <div className="div153">        
-             {world.slice(1, 4).map((item, index) => (
+             {world.slice(2, 4).map((item, index) => (
                   <NewsCard
                     key={index}
                     title={item.title.length > 100
@@ -280,7 +290,7 @@ function App() {
                 ))}
         </div>
         <div className="div154">
-           {world.slice(1, 4).map((item, index) => (
+           {world.slice(4, 6).map((item, index) => (
                   <NewsCard
                     key={index}
                     title={item.title.length > 100
@@ -296,7 +306,7 @@ function App() {
                 ))}
         </div>
         <div className="div155">
-              {world.slice(1, 4).map((item, index) => (
+              {world.slice(6, 8).map((item, index) => (
                   <NewsCard
                     key={index}
                     title={item.title.length > 100
@@ -314,7 +324,7 @@ function App() {
       </div>
 
       <div className="div16"><Topic />
-          {world.map((item, index) => (
+          {world.slice(0,4).map((item, index) => (
                   <NewsCard
                     key={index}
                     title={item.title.length > 100
@@ -332,6 +342,7 @@ function App() {
       <div className="div17"><Footer /></div>
 
       <Modal />
+    </div>
     </div>
   );
 }

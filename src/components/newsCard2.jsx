@@ -19,7 +19,13 @@ function NewsCard({ title, description, image }) {
   return (
     <Card
       onClick={openModal}
-      style={{ marginBottom: '10px', cursor: 'pointer' }}
+      style={{
+        width: '100%',
+        height: '300px',
+        marginBottom: '10px',
+        cursor: 'pointer',
+        overflow: 'hidden',
+      }}
     >
       <Card.Img
         variant="top"
@@ -28,8 +34,18 @@ function NewsCard({ title, description, image }) {
         style={{ height: '150px', objectFit: 'cover' }}
       />
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{description}</Card.Text>
+        <Card.Title               
+        style={{
+                fontSize: '1.0rem',                
+                padding: '0px 10px',
+                fontWeight: 'bold',
+              }}>{title}
+         </Card.Title>
+        <Card.Text          
+        style={{
+                fontSize: '0.9rem',
+                padding: '5px 10px',
+              }}>{description}</Card.Text>
       </Card.Body>
     </Card>
   );
