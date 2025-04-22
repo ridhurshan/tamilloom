@@ -1,0 +1,117 @@
+.parent {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(36, minmax(20px, auto));
+    gap: 8px;
+  }
+  
+  /* Navbar */
+  .div1 {
+    grid-area: 1 / 1 / 2 / 21;
+    background-color: antiquewhite;
+  }
+  
+  /* LEFT COLUMN */
+  .div2 {
+    grid-area: 2 / 1 / 15 / 6;
+    background-color: rgb(126, 82, 25);
+  }
+  
+  /* CENTER COLUMN - FIXED HEIGHT, NO STRETCH */
+  .div3 {
+    /* grid-area: 2 / 6 / 10 / 15; */
+    grid-area: 2 / 6 / 9 / 15; 
+    /* Ends at row 9, avoids shared row 10 */
+    background-color: rgb(100, 151, 33);
+    height: 100%;
+    max-height: 800px;
+    overflow: hidden;
+    align-self: start;
+  }
+  
+  /* RIGHT COLUMN */
+  .div4 {
+    grid-area: 2 / 15 / 15 / 21;
+    background-color: rgb(26, 168, 85);
+  }
+  
+  /* SMALL CENTER CARDS */
+  .div5 {
+    grid-area: 10 / 6 / 12 / 11;
+    background-color: rgb(189, 117, 88);
+    max-height: 200px;
+    overflow: hidden;
+  }
+  .div6 {
+    grid-area: 10 / 11 / 12 / 15;
+    background-color: rgb(62, 129, 88);
+    max-height: 200px;
+    overflow: hidden;
+  }
+  .div7 {
+    grid-area: 13 / 6 / 15 / 11;
+    background-color: rgb(240, 148, 11);
+    max-height: 200px;
+    overflow: hidden;
+  }
+  .div8 {
+    grid-area: 13 / 11 / 15 / 15;
+    background-color: rgb(97, 22, 146);
+    max-height: 200px;
+    overflow: hidden;
+  }
+  
+  /* BOTTOM LAYOUTS */
+  .div9 {
+    grid-area: 15 / 1 / 21 / 11;
+    background-color: antiquewhite;
+  }
+  .div10 {
+    grid-area: 15 / 11 / 21 / 21;
+    background-color: rgb(178, 133, 192);
+  }
+  .div11 {
+    grid-area: 21 / 1 / 27 / 7;
+    background-color: rgb(94, 211, 147);
+  }
+  .div12 {
+    grid-area: 21 / 7 / 27 / 14;
+    background-color: rgb(161, 146, 12);
+  }
+  .div13 {
+    grid-area: 21 / 14 / 27 / 21;
+    background-color: antiquewhite;
+  }
+  .div14 {
+    grid-area: 12 / 6 / 13 / 15;
+    background-color: rgb(118, 158, 139);
+  }
+  .div15 {
+    grid-area: 27 / 1 / 33 / 14;
+    background-color: rgb(102, 21, 39);
+  }
+  .div16 {
+    grid-area: 27 / 14 / 33 / 21;
+    background-color: rgb(40, 107, 81);
+  }
+  .div17 {
+    grid-area: 33 / 1 / 36 / 21;
+    background-color: rgb(199, 58, 180);
+  }
+  
+
+  /* div15 grid style */
+  .div15 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    }
+    
+    .div151 { grid-area: 1 / 1 / 2 / 3; background-color: aqua;}
+    .div152 { grid-area: 2 / 1 / 5 / 2; background-color: blue;}
+    .div153 { grid-area: 5 / 1 / 8 / 2;background-color: brown; }
+    .div154 { grid-area: 2 / 2 / 5 / 3; background-color: cadetblue;}
+    .div155 { grid-area: 5 / 2 / 8 / 3; background-color: cornflowerblue;}
+    
