@@ -12,49 +12,70 @@ import Topic from './components/topic';
 import ImageNews from "./components/imageNews";
 import Footer from './components/footer';
 import Modal from './components/model';
+import SocialMediaNavbar from "./components/SocialMediaNavbar";
+
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setWorld, setLocal } from './redux/store/newsSlice.js';
+import { setNewsData, setLoading, setError } from './redux/store/newsSlice.js';
 
 function App() {
   const dispatch = useDispatch();
-  const world = useSelector((state) => state.news.world);
-  const local = useSelector((state) => state.news.local);
+  const news = useSelector((state) => state.news);
+  const { world, local, business, technology, health, events, sports, cinema, loading, error } = news;
 
-  console.log("App mounted");
-
-  useEffect(() => {
-    console.log("Parsing started ✅");
+  const fetchNewsData = () => {
+    dispatch(setLoading(true));
     Papa.parse(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vTK-cSpK9p3tG3ngQzLDz6LPjHrigggc0Y7E23n3SkYDhYgGKr-4jGqyDTXA8sB97RGsuLYA27in9lc/pub?output=csv",
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vTK-cSpK9p3tG3ngQzLDz6LPjHrigggc0Y7E23n3SkYDhYgGKr-4jGqyDTXA8sB97RGsuLYA27in9lc/pub?output=csv',
       {
         download: true,
         header: true,
         complete: (results) => {
-          console.log("Parse complete ✅", results.data);
-          const filteredWorld = results.data.filter(row =>
-            row.section?.trim().toLowerCase() === "world"
-          );
-          const filteredLocal = results.data.filter(row =>
-            row.section?.trim().toLowerCase() === "local"
-          );
-          dispatch(setWorld(filteredWorld));
-          dispatch(setLocal(filteredLocal));
+          const data = results.data;
+
+          // ✅ Dynamically categorize
+          const categories = ['world', 'local', 'business', 'technology', 'health', 'events', 'sports', 'cinema'];
+          const categorizedData = {};
+
+          categories.forEach((category) => {
+            categorizedData[category] = data.filter(
+              (row) => row.section?.trim().toLowerCase() === category
+            );
+          });
+
+          dispatch(setNewsData(categorizedData));
         },
-        error: (err) => {
-          console.error("PapaParse error ❌", err);
+        error: (error) => {
+          dispatch(setError(error.message));
         }
       }
     );
-  }, [dispatch]);
+  };
 
   useEffect(() => {
-    console.log("world updated from redux ✅", world);
-  }, [world]);
+    console.log('App mounted ✅'+ news);
+    fetchNewsData();
+  }, []);
 
-  useEffect(() => {
-    console.log("local updated from redux ✅", local);
-  }, [local]);
+  //time
+      const now = new Date();
+
+      const options = { 
+        day: '2-digit', 
+        month: 'short', 
+        year: 'numeric', 
+        weekday: 'short' 
+      };
+
+      const datePart = now.toLocaleDateString('en-GB', options); 
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      const timePart = `${hours}.${minutes} ${ampm}`;
+      const finalOutput = `${datePart}, ${timePart}`;
+
 
   return (
     <div>
@@ -66,14 +87,8 @@ function App() {
           {local?.slice(0,5).map((item, index) => (
             <NewsCard
               key={index}
-              title={item.title?.length > 100
-                  ? item.title.slice(0, 100) + "..."
-                  : item.title
-              }
-              description={item.description?.length > 100
-                ? item.description.slice(0, 100) + "..."
-                : item.description
-              }
+              title={ item.title}
+              description={item.description}
               image={item.image}
             />
           ))}
@@ -91,8 +106,10 @@ function App() {
             }}
           />
           <Carousel world={world} /> 
+          <SocialMediaNavbar/>
         </div>
         <div className="div4">
+        <Topic title={finalOutput}/>
           <Topic title="உள்ளூர்"/>
           {local?.slice(0,4).map((item, index) => (
             <NewsCard
@@ -109,7 +126,6 @@ function App() {
             />
           ))}
           <br/>
-          <Topic/>
           <Carousel world={world} /> 
         </div>
         <div className="div5">

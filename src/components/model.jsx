@@ -23,11 +23,17 @@ function ModalWrapper() {
       show={isOpen}
       onHide={() => dispatch(hideModal())}
       centered
-      size="lg"
+      size={"false"}
       dialogClassName="custom-modal"
+      style={{width:"100vw"}}
+      contentStyle={{
+        background: 'rgba(0, 0, 0, 0.7)',
+        border: '1px solid rgba(255, 255, 255, 0.2)',
+        width: '100%' // Ensures content fills the modal
+      }}
     >
-      <Modal.Header closeButton>
-        <Modal.Title>{modalContent?.title || 'Modal Title'}</Modal.Title>
+      <Modal.Header closeButton style={{ borderBottom: '1px solid rgba(255,255,255,0.3)' }}>
+        <Modal.Title style={{ color: '#fff' }}>{modalContent?.title || 'Modal Title'}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body style={glassStyle}>
@@ -36,23 +42,44 @@ function ModalWrapper() {
             src={modalContent.image}
             alt={modalContent.title}
             style={{
-              width: 'auto',
-              maxWidth: '300px',
-              height: 'auto',
-              minHeight: '300px',
+              width: '100%',
+              maxHeight: '400px',
               objectFit: 'cover',
-              marginBottom: '1rem'
+              marginBottom: '1rem',
+              borderRadius: '8px'
             }}
           />
         )}
-        <p>{modalContent?.description || 'Modal Content goes here.'}</p>
+        <p style={{ color: 'rgba(255,255,255,0.8)' }}>
+          {modalContent?.description || 'Modal Content goes here.'}
+        </p>
       </Modal.Body>
 
-      <Modal.Footer>
-        <Button variant="secondary" onClick={() => dispatch(hideModal())}>
+      <Modal.Footer style={{ borderTop: '1px solid rgba(255,255,255,0.3)' }}>
+        <Button 
+          variant="secondary" 
+          onClick={() => dispatch(hideModal())}
+          style={{
+            background: 'rgba(255,255,255,0.1)',
+            border: '1px solid rgba(255,255,255,0.3)'
+          }}
+        >
           Close
         </Button>
       </Modal.Footer>
+
+      {/* Add this CSS to your global styles or component */}
+      <style jsx global>{`
+        .modal-content {
+          background: rgba(0, 0, 0, 0.7) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          width: 800px !important;
+          max-width: 90vw !important;
+        }
+        .modal-header .btn-close {
+          filter: invert(1);
+        }
+      `}</style>
     </Modal>
   );
 }

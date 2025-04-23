@@ -15,13 +15,15 @@ function ImgOverlayExample({ title, description, image }) {
   };
 
   return (
-    <Card className="bg-dark text-white" onClick={openModal} style={{curseer:"pointer", height:"200px"}}>
-      <Card.Img src={image} alt="Card image"           style={{
+    <Card className="bg-dark text-white" onClick={openModal} style={{curseer:"pointer", height:"200px",overflow: 'hidden',}}>
+      <Card.Img src={image} alt="Card image"           
+      style={{
             height: '100%',
             width: '100%',
             objectFit: 'cover',
             display: 'block',
             minHeight: '150px',
+            overflow: 'hidden',
           }}/>
       <Card.ImgOverlay>
         <Card.Title>{title}</Card.Title>

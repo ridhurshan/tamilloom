@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     // loader: rootLoader,
   },  
   {
-    path: "/page",
+    path: "/page/:category",
     element: <Page />,
     // loader: rootLoader,
   }

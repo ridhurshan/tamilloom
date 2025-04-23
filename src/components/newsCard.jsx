@@ -59,7 +59,7 @@ function BorderExample({ title, description, image }) {
                 backgroundColor: '#fff', // ✅ Required for sticky
               }}
             >
-              {title}
+              {title?.length > 100? title.slice(0, 100) + "...": title}
             </Card.Header>
             <div
               style={{
@@ -68,7 +68,7 @@ function BorderExample({ title, description, image }) {
                 padding: '5px 10px',
               }}
             >
-              {description}
+              {description?.length > 100?description.slice(0, 100) + "...": description}
             </div>
           </div>
         </Col>
