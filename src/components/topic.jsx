@@ -11,8 +11,8 @@ function ContainerInsideExample({title}) {
         borderRadius: "28px",
         backdropFilter: "blur(10px)",
         background: "rgba(255, 255, 255, 0.1)",
-        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-        border: "1px solid rgba(255, 255, 255, 0.3)",
+        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
+        border: "1px solid rgba(0, 0, 0, 0.3)",
         WebkitBackdropFilter: "blur(10px)",
         animation: "shine 3s infinite linear",
       }}
@@ -22,10 +22,10 @@ function ContainerInsideExample({title}) {
           href="#"
           className="mx-auto"
           style={{
-            color: "#fff",
+            color: "black",
             fontWeight: "bold",
             fontSize: "20px",
-            textShadow: "0 0 10px rgba(255,255,255,0.8)",
+            textShadow: "0 0 10px rgba(255, 255, 255, 0.1)",
           }}
         >
           {title || "navbar"}

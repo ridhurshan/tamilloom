@@ -8,12 +8,15 @@ import NewsCard from "./components/newsCard";
 import NewsCard2 from "./components/newsCard2";
 import VideoPlayer from './components/VideoPlayer';
 import Video from "./Images/vid1.mp4";
+import Video2 from "./Images/vid2.mp4";
 import Topic from './components/topic';
 import ImageNews from "./components/imageNews";
 import Footer from './components/footer';
 import Modal from './components/model';
+import SearchResults from './components/SearchResults.jsx';
 import SocialMediaNavbar from "./components/SocialMediaNavbar";
-
+import Newsletter from './components/Newsletter.jsx';
+import Comment from './components/Comment.jsx';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setNewsData, setLoading, setError } from './redux/store/newsSlice.js';
@@ -80,9 +83,21 @@ function App() {
   return (
     <div>
       <div className="parent">
-        <div className="div1"><Navbar /></div>
+        <div className="div1"><Navbar /><Topic title="உண்மையை 
+        நேர்மையாகச் சொல்லும் ஒவ்வொரு வார்த்தையும், ஒரு மாற்றத்தின் விதையாகும்."/></div>
         <div className="div2">      
-          <Carousel world={world} /> 
+          {/* <Carousel world={world} />  */}
+          <VideoPlayer 
+            src={Video2}
+            controls={true}
+            autoPlay={true}
+            loop={true}
+            // You can override default styles if needed
+            style={{
+              height: '300px',
+              width: '420px'
+            }}
+          />
           <Topic title="உலகம்"/>
           {local?.slice(0,5).map((item, index) => (
             <NewsCard
@@ -102,7 +117,7 @@ function App() {
             // You can override default styles if needed
             style={{
               height: '150px',
-              width: '850px'
+              width: '750px'
             }}
           />
           <Carousel world={world} /> 
@@ -229,7 +244,7 @@ function App() {
 
         <div className="div11">
           <Topic title="கட்டுரை"/>
-          {local?.slice(0,4).map((item, index) => (
+          {local?.slice(0,5).map((item, index) => (
             <NewsCard2
               key={index}
               title={item.title?.length > 100
@@ -279,7 +294,7 @@ function App() {
             />
           ))}
         </div>
-        <div className="div14"><Topic/></div>
+        <div className="div14"><Topic title="ஆரோக்கியம்"/></div>
 
         <div className="div15">
           <div className="div151"><Topic title="ஆரோக்கியம்"/></div>
@@ -332,20 +347,7 @@ function App() {
             ))}
           </div>
           <div className="div155">
-            {world?.slice(6, 8).map((item, index) => (
-              <NewsCard
-                key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
-                image={item.image}
-              />
-            ))}
+              <Newsletter/>
           </div>
         </div>
 
@@ -369,6 +371,7 @@ function App() {
         <div className="div17"><Footer /></div>
 
         <Modal />
+        <SearchResults/>
       </div>
     </div>
   );

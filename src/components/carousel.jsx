@@ -30,8 +30,20 @@ function UncontrolledCarousel({ world }) {
               width: '100%',  maxHeight: '400px' }}
             />
             <Carousel.Caption>
-              <h3>{i.title}</h3>
-              <p>{i.description}</p>
+              <h3         
+              style={{
+                fontSize: '1.0rem',                
+                padding: '0px 10px',
+                fontWeight: 'bold',
+              }}>{i.title?.length > 100? i.title.slice(0, 100) + "...": i.title}
+              </h3>
+              <p
+                style={{
+                        fontSize: '0.9rem',
+                        padding: '5px 10px',
+                      }}>
+                      {i.description?.length > 100? i.description.slice(0, 100) + "...": i.description}
+                      </p>
             </Carousel.Caption>
           </Carousel.Item>
         );
