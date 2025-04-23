@@ -8,42 +8,61 @@ function ModalWrapper() {
   const dispatch = useDispatch();
   const { isOpen, modalContent } = useSelector((state) => state.modal);
 
-  const glassStyle = {
-    background: 'rgba(255, 255, 255, 0.13)',
-    borderRadius: '16px',
-    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-    backdropFilter: 'blur(3.4px)',
-    WebkitBackdropFilter: 'blur(3.4px)',
-    border: '1px solid rgba(255, 255, 255, 0.96)',
-    padding: '1rem'
-  };
-
+    const glassStyle = {
+      modal: {
+        maxWidth: '90vw',
+        margin: '0 auto'
+      },
+      dialog: {
+        maxWidth: '90vw',
+        width: '90vw',
+        margin: '0 auto'
+      },
+      content: {
+        backgroundColor: '#fff',
+        border: '1px solid rgba(0, 0, 0, 0.2)',
+        borderRadius: '8px',
+        backdropFilter: 'blur(10px)',
+        color: '#fff'
+      },
+      header: {
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+      },
+      body: {
+        padding: '20px'
+      },
+      image: {
+        width: '100%',
+        maxHeight: '60vh',
+        objectFit: 'contain',
+        marginBottom: '20px',
+        borderRadius: '4px'
+      }
+    };
   return (
+
     <Modal
-      show={isOpen}
-      onHide={() => dispatch(hideModal())}
-      centered
-      size={"false"}
-      dialogClassName="custom-modal"
-      style={{width:"100vw"}}
-      contentStyle={{
-        background: 'rgba(0, 0, 0, 0.7)',
-        border: '1px solid rgba(255, 255, 255, 0.2)',
-        width: '100%' // Ensures content fills the modal
-      }}
-    >
+    show={isOpen}
+    onHide={() => dispatch(hideModal())}
+    size="lg"
+    aria-labelledby="contained-modal-title-vcenter"
+    centered
+    dialogClassName="modal-90w"
+    //aria-labelledby="example-custom-modal-styling-title"
+  >
+
+
       <Modal.Header closeButton style={{ borderBottom: '1px solid rgba(255,255,255,0.3)' }}>
         <Modal.Title style={{ color: '#fff' }}>{modalContent?.title || 'Modal Title'}</Modal.Title>
       </Modal.Header>
 
-      <Modal.Body style={glassStyle}>
+      <Modal.Body style={{backgroundColor:"white"}}>
         {modalContent?.image && (
           <img
             src={modalContent.image}
             alt={modalContent.title}
             style={{
               width: '100%',
-              maxHeight: '400px',
               objectFit: 'cover',
               marginBottom: '1rem',
               borderRadius: '8px'

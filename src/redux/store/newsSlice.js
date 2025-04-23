@@ -9,6 +9,7 @@ const initialState = {
   events: [],
   sports: [],
   cinema: [],
+  feature:[],
   loading: false,
   error: null
 };

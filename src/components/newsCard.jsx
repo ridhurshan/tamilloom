@@ -16,64 +16,66 @@ function BorderExample({ title, description, image }) {
   };
 
   return (
-    <Card
-      onClick={openModal}
-      border="primary"
-      style={{
-        width: '100%',
-        height: '150px',
-        marginBottom: '10px',
-        cursor: 'pointer',
-        overflow: 'hidden',
-      }}
-    >
-      <Row className="g-0" style={{ height: '100%' }}>
-        <Col md={4} style={{ overflow: 'hidden' }}>
-          <Card.Img
-            src={image}
-            alt="Card side"
-            style={{
-              height: '100%',
-              width: '100%',
-              objectFit: 'cover',
-            }}
-          />
-        </Col>
-        <Col md={8}>
-          <div
-            style={{
-              height: '100%',
-              overflowY: 'auto', // ✅ allow scroll inside
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            <Card.Header
+    <Col xs={12} sm={6} md={12} style={{ padding: '5px' }}>
+      <Card
+        onClick={openModal}
+        border="primary"
+        style={{
+          width: '100%',
+          height: '150px',
+          marginBottom: '10px',
+          cursor: 'pointer',
+          overflow: 'hidden',
+        }}
+      >
+        <Row className="g-0" style={{ height: '100%' }}>
+          <Col xs={4} md={4} style={{ overflow: 'hidden' }}>
+            <Card.Img
+              src={image}
+              alt="Card side"
               style={{
-                fontSize: '1.0rem',
-                lineHeight: '1.0em',
-                fontWeight: 'bold',
-                position: 'sticky',
-                top: 0,
-                zIndex: 10,
-                backgroundColor: '#fff', // ✅ Required for sticky
+                height: '100%',
+                width: '100%',
+                objectFit: 'cover',
               }}
-            >
-              {title?.length > 100? title.slice(0, 100) + "...": title}
-            </Card.Header>
+            />
+          </Col>
+          <Col xs={8} md={8}>
             <div
               style={{
-                fontSize: '0.9rem',
-                lineHeight: '1.4em',
-                padding: '5px 10px',
+                height: '100%',
+                overflowY: 'auto',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              {description?.length > 100?description.slice(0, 100) + "...": description}
+              <Card.Header
+                style={{
+                  fontSize: 'clamp(0.8rem, 2vw, 1.0rem)',
+                  lineHeight: '1.0em',
+                  fontWeight: 'bold',
+                  position: 'sticky',
+                  top: 0,
+                  zIndex: 10,
+                  backgroundColor: '#fff',
+                }}
+              >
+                {title?.length > 100 ? title.slice(0, 100) + "..." : title}
+              </Card.Header>
+              <div
+                style={{
+                  fontSize: 'clamp(0.7rem, 2vw, 0.9rem)',
+                  lineHeight: '1.4em',
+                  padding: '5px 10px',
+                }}
+              >
+                {description?.length > 100 ? description.slice(0, 100) + "..." : description}
+              </div>
             </div>
-          </div>
-        </Col>
-      </Row>
-    </Card>
+          </Col>
+        </Row>
+      </Card>
+    </Col>
   );
 }
 

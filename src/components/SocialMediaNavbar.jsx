@@ -12,8 +12,8 @@ function SocialMediaNavbar() {
         borderRadius: "28px",
         backdropFilter: "blur(10px)",
         background: "rgba(255, 255, 255, 0.1)",
-        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-        border: "1px solid rgba(255, 255, 255, 0.3)",
+        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
+        border: "1px solid rgba(0, 0, 0, 0.3)",
         WebkitBackdropFilter: "blur(10px)",
       }}
     >
@@ -21,37 +21,37 @@ function SocialMediaNavbar() {
         <Navbar.Brand href="#" className="mx-2">
           <FaFacebook 
             size={24} 
-            style={{ color: "#fff", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "rgb(18, 52, 88)1B56FD", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>
         <Navbar.Brand href="#" className="mx-2">
           <FaWhatsapp 
             size={24} 
-            style={{ color: "#fff", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>  
         <Navbar.Brand href="#" className="mx-2">
           <FaTwitter 
             size={24} 
-            style={{ color: "#fff", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>
         <Navbar.Brand href="#" className="mx-2">
           <FaInstagram 
             size={24} 
-            style={{ color: "#fff", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>
         <Navbar.Brand href="#" className="mx-2">
           <FaYoutube 
             size={24} 
-            style={{ color: "#fff", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>
         <Navbar.Brand href="#" className="mx-2">
           <FaLinkedin 
             size={24} 
-            style={{ color: "#fff", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(D4C9BE,0.8))" }} 
           />
         </Navbar.Brand>
       </Container>
