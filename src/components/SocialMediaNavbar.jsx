@@ -21,31 +21,31 @@ function SocialMediaNavbar() {
         <Navbar.Brand href="#" className="mx-2">
           <FaFacebook 
             size={24} 
-            style={{ color: "rgb(18, 52, 88)1B56FD", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "rgb(18, 52, 88)1B56FD", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>
         <Navbar.Brand href="#" className="mx-2">
           <FaWhatsapp 
             size={24} 
-            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>  
         <Navbar.Brand href="#" className="mx-2">
           <FaTwitter 
             size={24} 
-            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>
         <Navbar.Brand href="#" className="mx-2">
           <FaInstagram 
             size={24} 
-            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>
         <Navbar.Brand href="#" className="mx-2">
           <FaYoutube 
             size={24} 
-            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(255,255,255,0.8))" }} 
+            style={{ color: "#123458", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>
         <Navbar.Brand href="#" className="mx-2">

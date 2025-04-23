@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <footer className="bg-dark text-white text-center py-4" style={{ minHeight: "160px" }}>
+    <footer className="bg-dark text-white text-center py-4" style={{ minHeight: "160px" ,bottom: "0"}}>
       <div>
         <p style={{ margin: 0 }}>© 2025 My Website. All rights reserved.</p>
         <p style={{ margin: 0, fontStyle: 'italic' }}>

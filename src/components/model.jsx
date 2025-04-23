@@ -19,7 +19,7 @@ function ModalWrapper() {
         margin: '0 auto'
       },
       content: {
-        backgroundColor: 'rgba(255, 255, 255, 0.13)',
+        backgroundColor: '#fff',
         border: '1px solid rgba(0, 0, 0, 0.2)',
         borderRadius: '8px',
         backdropFilter: 'blur(10px)',
@@ -56,7 +56,7 @@ function ModalWrapper() {
         <Modal.Title style={{ color: '#fff' }}>{modalContent?.title || 'Modal Title'}</Modal.Title>
       </Modal.Header>
 
-      <Modal.Body style={glassStyle}>
+      <Modal.Body style={{backgroundColor:"white"}}>
         {modalContent?.image && (
           <img
             src={modalContent.image}
