@@ -170,17 +170,23 @@ function NavScrollExample() {
                                     background: "rgba(255, 255, 255, 0.2)",
                                     border: "1px solid rgba(0, 0, 0, 0.2)",
                                     backdropFilter: "blur(5px)",
+                                    borderRadius:"27px",
+                                    padding:"10 18px",
+                                    margin:"3px 10px 1px 0"
                                 }}
                             />
                             <Button 
                                 variant="outline-success" 
                                 type="submit"
                                 style={{
-                                    background: "rgba(40, 167, 69, 0.2)",
+                                    background: "rgba(22, 17, 121, 0.2)",  
                                     border: "1px solid rgba(0, 0, 0, 0.2)",
                                     backdropFilter: "blur(5px)",
                                     color: "black",
                                     fontWeight: "500",
+                                    borderRadius:"27px",
+                                    padding:"10 18px",
+                                    margin:"3px 10px 1px 0"
                                 }}
                             >
                                 Search
@@ -208,8 +214,8 @@ function NavScrollExample() {
                         text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
                     }
                     .btn-outline-success:hover {
-                        background: rgba(40, 167, 69, 0.4) !important;
-                    }
+                        background: rgba(38, 31, 179, 0.4) !important;
+                    }    
                 `}</style>
             </Navbar>
             

@@ -24,12 +24,12 @@ import { setNewsData, setLoading, setError } from './redux/store/newsSlice.js';
 function App() {
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
-  const { world, local, business, technology, health, events, sports, cinema, loading, error } = news;
+  const { world, local, business, technology, health, events, sports, cinema,feature, loading, error } = news;
 
   const fetchNewsData = () => {
     dispatch(setLoading(true));
     Papa.parse(
-      'https://docs.google.com/spreadsheets/d/e/2PACX-1vTK-cSpK9p3tG3ngQzLDz6LPjHrigggc0Y7E23n3SkYDhYgGKr-4jGqyDTXA8sB97RGsuLYA27in9lc/pub?output=csv',
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vQK6qO9TMSz92p4vdTkwuwTxB3kIcUlUBR9w22QSoNmVzwlAIoLbT2w_VI-2pMM6cJYhbMnzOOYd4_W/pub?gid=0&single=true&output=csv',
       {
         download: true,
         header: true,
@@ -37,7 +37,8 @@ function App() {
           const data = results.data;
 
           // ✅ Dynamically categorize
-          const categories = ['world', 'local', 'business', 'technology', 'health', 'events', 'sports', 'cinema'];
+          const categories = ['world', 'local', 'business', 'technology', 'health', 
+          'events', 'sports', 'cinema',"feature"];
           const categorizedData = {};
 
           categories.forEach((category) => {
@@ -99,7 +100,7 @@ function App() {
             }}
           />
           <Topic title="உலகம்"/>
-          {local?.slice(0,5).map((item, index) => (
+          {world?.slice(0,5).map((item, index) => (
             <NewsCard
               key={index}
               title={ item.title}
@@ -209,7 +210,7 @@ function App() {
         </div>
         <div className="div9">
           <Topic title="விளையாட்டு"/>
-          {local?.slice(0,4).map((item, index) => (
+          {sports?.slice(0,4).map((item, index) => (
             <NewsCard
               key={index}
               title={item.title?.length > 100
@@ -226,7 +227,7 @@ function App() {
         </div>
         <div className="div10">
           <Topic title="தொழில்நுட்பம்"/>
-          {local?.slice(0,4).map((item, index) => (
+          {technology?.slice(0,4).map((item, index) => (
             <NewsCard
               key={index}
               title={item.title?.length > 100
@@ -244,7 +245,7 @@ function App() {
 
         <div className="div11">
           <Topic title="கட்டுரை"/>
-          {local?.slice(0,5).map((item, index) => (
+          {feature?.slice(0,5).map((item, index) => (
             <NewsCard2
               key={index}
               title={item.title?.length > 100
@@ -262,7 +263,7 @@ function App() {
 
         <div className="div12">
           <Topic title="வணிகம்"/>
-          {local?.slice(0,5).map((item, index) => (
+          {business?.slice(0,5).map((item, index) => (
             <NewsCard2
               key={index}
               title={item.title?.length > 100
@@ -279,7 +280,7 @@ function App() {
         </div>
         <div className="div13">
           <Topic title="நிகழ்வு"/>
-          {local?.slice(0,5).map((item, index) => (
+          {events?.slice(0,5).map((item, index) => (
             <NewsCard2
               key={index}
               title={item.title?.length > 100
@@ -294,12 +295,12 @@ function App() {
             />
           ))}
         </div>
-        <div className="div14"><Topic title="ஆரோக்கியம்"/></div>
+        <div className="div14"><Topic title="முக்கிய செய்திகள் "/></div>
 
         <div className="div15">
           <div className="div151"><Topic title="ஆரோக்கியம்"/></div>
           <div className="div152">            
-            {world?.slice(0, 2).map((item, index) => (
+            {health?.slice(0, 2).map((item, index) => (
               <NewsCard
                 key={index}
                 title={item.title?.length > 100
@@ -315,7 +316,7 @@ function App() {
             ))}
           </div>
           <div className="div153">        
-            {world?.slice(2, 4).map((item, index) => (
+            {health?.slice(2, 4).map((item, index) => (
               <NewsCard
                 key={index}
                 title={item.title?.length > 100
@@ -331,7 +332,7 @@ function App() {
             ))}
           </div>
           <div className="div154">
-            {world?.slice(4, 6).map((item, index) => (
+            {health?.slice(4, 6).map((item, index) => (
               <NewsCard
                 key={index}
                 title={item.title?.length > 100
@@ -353,7 +354,7 @@ function App() {
 
         <div className="div16">
           <Topic title="சினிமா"/>
-          {world?.slice(0,4).map((item, index) => (
+          {cinema?.slice(0,4).map((item, index) => (
             <NewsCard
               key={index}
               title={item.title?.length > 100
