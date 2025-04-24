@@ -40,9 +40,17 @@ function UncontrolledCarousel({ world }) {
               </h3>
               <p
                 style={{
-                        fontSize: '0.9rem',
-                        padding: '5px 10px',
-                        bottom:"0",
+                  fontSize: '1.0rem',
+                  lineHeight: '1.0em',
+                  fontWeight: 'bold',
+                  zIndex: 10,
+                  background: 'rgba(0, 0, 0, 0.4)',
+                  padding: '5px',
+                  borderRadius: '5px',
+                  position: 'absolute', // Changed to absolute
+                  bottom: 0,           // Positioned at the bottom
+                  left: 0,             // Align to the left
+                  right: 0,            // Align to the right to take full width
                       }}>
                 {i.title?.length > 100? i.title.slice(0, 100) + "...": i.title}                         </p>
             </Carousel.Caption>
