@@ -1,0 +1,35 @@
+/* 📱 Additional styles specifically for phone screens (max-width: 576px) */
+@media (max-width: 200px) {
+    .navbar-brand {
+      font-size: 1rem !important; /* Smaller font for brand */
+    }
+  
+    .navbar-nav {
+      margin-top: 10px; /* Add some space below the brand */
+      text-align: center; /* Center the navigation links */
+    }
+  
+    .nav-link {
+      padding: 8px !important; /* Adjust padding for better touch targets */
+      font-size: 0.9rem !important; /* Slightly smaller font for links */
+    }
+  
+    .search-form {
+      margin-top: 15px !important; /* Add space above the search form */
+    }
+  
+    .search-input {
+      font-size: 0.8rem !important; /* Smaller font in search input */
+      padding: 6px 12px !important; /* Adjust padding */
+    }
+  
+    .search-btn {
+      font-size: 0.8rem !important; /* Smaller font in search button */
+      padding: 6px 12px !important; /* Adjust padding */
+    }
+  
+    .glass-navbar {
+      padding: 8px !important; /* Adjust overall padding */
+      border-radius: 12px !important; /* Slightly smaller border-radius */
+    }
+  }

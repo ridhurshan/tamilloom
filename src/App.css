@@ -5,29 +5,44 @@
 }
 
 /* Mobile-first: Single column layout */
-.parent {
-  grid-template-columns: 1fr;
-  grid-template-rows: auto; /* Let content determine height */
-}
+@media (min-width: 200px) {
+  .parent {
+    grid-template-columns: 1fr; /* Single column for phones */
+    grid-template-rows: auto;
+  }
 
-/* Assign mobile grid areas */
-.div1 { grid-area: 1; }
-.div2 { grid-area: 2; }
-.div3 { grid-area: 3; }
-.div4 { grid-area: 4; }
-.div5 { grid-area: 5; }
-.div6 { grid-area: 6; }
-.div7 { grid-area: 7; }
-.div8 { grid-area: 8; }
-.div9 { grid-area: 9; }
-.div10 { grid-area: 10; }
-.div11 { grid-area: 11; }
-.div12 { grid-area: 12; }
-.div13 { grid-area: 13; }
-.div14 { grid-area: 14; }
-.div15 { grid-area: 15; }
-.div16 { grid-area: 16; }
-.div17 { grid-area: 17; }
+  .div1 { grid-area: 1 / 1 / 2 / 2; }
+  .div2 { grid-area: 2 / 1 / 3 / 2; }
+  .div3 { grid-area: 3 / 1 / 4 / 2; }
+  .div4 { grid-area: 4 / 1 / 5 / 2; }
+  .div5 { grid-area: 5 / 1 / 6 / 2; }
+  .div6 { grid-area: 6 / 1 / 7 / 2; }
+  .div7 { grid-area: 7 / 1 / 8 / 2; }
+  .div8 { grid-area: 8 / 1 / 9 / 2; }
+  .div9 { grid-area: 9 / 1 / 10 / 2; }
+  .div10 { grid-area: 10 / 1 / 11 / 2; }
+  .div11 { grid-area: 11 / 1 / 12 / 2; }
+  .div12 { grid-area: 12 / 1 / 13 / 2; }
+  .div13 { grid-area: 13 / 1 / 14 / 2; }
+  .div14 { grid-area: 14 / 1 / 15 / 2; }
+  .div15 { grid-area: 15 / 1 / 16 / 2; }
+  .div16 { grid-area: 16 / 1 / 17 / 2; }
+  .div17 { grid-area: 17 / 1 / 18 / 2; }
+
+  /* Nested grid for div15 on mobile (single column) */
+  .div15 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto); /* Adjust rows as needed */
+    gap: 8px;
+  }
+
+  .div151 { grid-area: 1 / 1 / 2 / 2; }
+  .div152 { grid-area: 2 / 1 / 3 / 2; }
+  .div153 { grid-area: 3 / 1 / 4 / 2; }
+  .div154 { grid-area: 4 / 1 / 5 / 2; }
+  .div155 { grid-area: 5 / 1 / 6 / 2; }
+}
 
 /* Tablet layout (768px and up) */
 @media (min-width: 768px) {
@@ -35,7 +50,7 @@
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: auto;
   }
-  
+
   .div1 { grid-area: 1 / 1 / 2/ 9; }
   .div2 { grid-area: 2 / 1 / 3 / 3; }
   .div3 { grid-area: 2 / 3 / 3 / 7; }
@@ -53,6 +68,20 @@
   .div15 { grid-area: 7 / 1 / 8 / 7; }
   .div16 { grid-area: 7 / 7 / 8 / 9; }
   .div17 { grid-area: 8 / 1 / 9 / 9; }
+
+  /* Nested grid for div15 on tablet */
+  .div15 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, auto); /* Adjust rows as needed */
+    gap: 8px;
+  }
+
+  .div151 { grid-area: 1 / 1 / 2 / 3; }
+  .div152 { grid-area: 2 / 1 / 3 / 2; }
+  .div153 { grid-area: 3 / 1 / 5 / 2; }
+  .div154 { grid-area: 2 / 2 / 4 / 3; }
+  .div155 { grid-area: 4 / 2 / 6 / 3; }
 }
 
 /* Desktop layout (1024px and up) */
@@ -60,25 +89,25 @@
   .parent {
     grid-template-columns: repeat(20, 1fr);
   }
-  
+
   /* Navbar */
   .div1 { grid-area: 1 / 1 / 2 / 21; }
-  
+
   /* LEFT COLUMN */
   .div2 { grid-area: 2 / 1 / 15 / 6; }
-  
+
   /* CENTER COLUMN */
   .div3 { grid-area: 2 / 6 / 9 / 15; }
-  
+
   /* RIGHT COLUMN */
   .div4 { grid-area: 2 / 15 / 15 / 21; }
-  
+
   /* SMALL CENTER CARDS */
   .div5 { grid-area: 9 / 6 / 11 / 11; }
   .div6 { grid-area: 9 / 11 / 11 / 15; }
   .div7 { grid-area: 11 / 6 / 13 / 11; }
   .div8 { grid-area: 11 / 11 / 13 / 15; }
-  
+
   /* BOTTOM LAYOUTS */
   .div9 { grid-area: 15 / 1 / 21 / 11; }
   .div10 { grid-area: 15 / 11 / 21 / 21; }
@@ -89,15 +118,15 @@
   .div15 { grid-area: 27 / 1 / 33 / 14; }
   .div16 { grid-area: 27 / 14 / 33 / 21; }
   .div17 { grid-area: 33 / 1 / 36 / 21; }
-  
-  /* Nested grid for div15 */
+
+  /* Nested grid for div15 on desktop */
   .div15 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(7, auto);
     gap: 8px;
   }
-  
+
   .div151 { grid-area: 1 / 1 / 2 / 3; }
   .div152 { grid-area: 2 / 1 / 5 / 2; }
   .div153 { grid-area: 5 / 1 / 8 / 2; }
@@ -105,7 +134,7 @@
   .div155 { grid-area: 5 / 2 / 8 / 3; }
 }
 
-/* General styling for all screen sizes
+/* General styling for all screen sizes */
 .div1 { background-color: antiquewhite; }
 .div2 { background-color: rgb(126, 82, 25); }
 .div3 { background-color: rgb(100, 151, 33); }
@@ -129,7 +158,7 @@
 .div152 { background-color: blue; }
 .div153 { background-color: brown; }
 .div154 { background-color: cadetblue; }
-.div155 { background-color: cornflowerblue; } */ */
+.div155 { background-color: cornflowerblue; } */
 
 /* Ensure all grid items have proper sizing */
 .parent > div {
@@ -139,7 +168,7 @@
 
 /* Center column specific styling */
 .div3 {
-  height: 100%;
-  max-height: 800px;
-  align-self: start;
+  height: auto; /* Adjust height for mobile */
+  max-height: none; /* Remove max-height for mobile */
+  align-self: stretch; /* Stretch to fill the row on mobile */
 }

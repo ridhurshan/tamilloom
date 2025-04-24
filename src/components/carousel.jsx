@@ -35,15 +35,16 @@ function UncontrolledCarousel({ world }) {
                 fontSize: '1.0rem',                
                 padding: '0px 10px',
                 fontWeight: 'bold',
-              }}>{i.title?.length > 100? i.title.slice(0, 100) + "...": i.title}
+              }}>
+                {/* {i.title?.length > 100? i.title.slice(0, 100) + "...": i.title} */}
               </h3>
               <p
                 style={{
                         fontSize: '0.9rem',
                         padding: '5px 10px',
+                        bottom:"0",
                       }}>
-                      {i.description?.length > 100? i.description.slice(0, 100) + "...": i.description}
-                      </p>
+                {i.title?.length > 100? i.title.slice(0, 100) + "...": i.title}                         </p>
             </Carousel.Caption>
           </Carousel.Item>
         );

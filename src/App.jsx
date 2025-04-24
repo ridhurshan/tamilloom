@@ -17,11 +17,13 @@ import SearchResults from './components/SearchResults.jsx';
 import SocialMediaNavbar from "./components/SocialMediaNavbar";
 import Newsletter from './components/Newsletter.jsx';
 import Comment from './components/Comment.jsx';
-
+//import ImgFram from "./components/imageFram.jsx"
+import { useMediaQuery } from 'react-responsive';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNewsData, setLoading, setError } from './redux/store/newsSlice.js';
 
 function App() {
+  const isNotMobile = useMediaQuery({ minWidth: 769 }); 
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const { world, local, business, technology, health, events, sports, cinema,feature, loading, error } = news;
@@ -84,8 +86,16 @@ function App() {
   return (
     <div>
       <div className="parent">
-        <div className="div1"><Navbar /><Topic title="உண்மையை 
-        நேர்மையாகச் சொல்லும் ஒவ்வொரு வார்த்தையும், ஒரு மாற்றத்தின் விதையாகும்."/></div>
+        <div className="div1"><Navbar />
+        {isNotMobile && (
+            <Topic 
+            id="title"
+          title="உண்மையை 
+          நேர்மையாகச் சொல்லும் ஒவ்வொரு வார்த்தையும், ஒரு மாற்றத்தின்
+          விதையாகும்."/>
+
+        )}
+          </div>
         <div className="div2">      
           {/* <Carousel world={world} />  */}
           <VideoPlayer 
@@ -110,17 +120,23 @@ function App() {
           ))}
         </div> 
         <div className="div3">
-        <VideoPlayer 
-            src={Video}
-            controls={false}
-            autoPlay={true}
-            loop={true}
-            // You can override default styles if needed
-            style={{
-              height: '150px',
-              width: '750px'
-            }}
-          />
+                  {isNotMobile ? (
+                              <VideoPlayer 
+                              src={Video}
+                              controls={false}
+                              autoPlay={true}
+                              loop={true}
+                              // You can override default styles if needed
+                              style={{
+                                height: '150px',
+                                width: '750px'
+                              }}
+                            />
+                    ) : 
+                        // <ImgFram/>
+                        null
+                    }
+
           <Carousel world={world} /> 
           <SocialMediaNavbar/>
         </div>
@@ -295,7 +311,14 @@ function App() {
             />
           ))}
         </div>
-        <div className="div14"><Topic title="முக்கிய செய்திகள் "/></div>
+        
+        <div className="div14">
+          {isNotMobile ? (
+            <Topic title="முக்கிய செய்திகள்" />
+          ) : 
+          <Topic title="Tamil LOom "/>
+          }
+          </div>
 
         <div className="div15">
           <div className="div151"><Topic title="ஆரோக்கியம்"/></div>
@@ -347,8 +370,12 @@ function App() {
               />
             ))}
           </div>
-          <div className="div155">
-              <Newsletter/>
+              <div className="div155">
+              {isNotMobile ? (
+                <Newsletter/>
+              ) : 
+              null
+              }
           </div>
         </div>
 

@@ -17,7 +17,7 @@ function NewsCard({ title, description, image }) {
   // if (!item) return null; // Prevent crash if item is undefined
 
   return (
-    <Card
+    <Card xs={3} sm={6} md={12}
       onClick={openModal}
       style={{
         width: '100%',
@@ -27,13 +27,13 @@ function NewsCard({ title, description, image }) {
         overflow: 'hidden',
       }}
     >
-      <Card.Img
+      <Card.Img xs={3} sm={6} md={12}
         variant="top"
         src={image}
         alt={title}
         style={{ height: '150px', objectFit: 'cover' }}
       />
-      <Card.Body>
+      <Card.Body >
         <Card.Title               
         style={{
                 fontSize: '1.0rem',                

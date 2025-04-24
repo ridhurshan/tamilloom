@@ -43,85 +43,103 @@ const Newsletter = () => {
 
   return (
     <div style={{
-      margin: "20px auto",
+      // Default styles (for all screens)
+      margin: "20px 10px",
       padding: "24px",
       borderRadius: "28px",
-      backdropFilter: "blur(10px)",
       background: "rgba(255, 255, 255, 0.1)",
-      boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
-      border: "1px solid rgba(0, 0, 0, 0.3)",
-      maxWidth: "500px",
       width: "90%",
-      position: "relative",
+      maxWidth: "500px",
+
+      // Mobile override (applies only ≤ 768px)
+      "@media (max-width: 768px)": {
+        margin: "16px 2px", // Changed from 10px to 0 on sides
+        padding: "8px",
+        borderRadius: "20px",
+        background: "rgba(255, 255, 255, 0.9)",
+        boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+        border: "1px solid rgba(0, 0, 0, 0.1)",
+        width: "calc(100vw - 32px)", // Full viewport width minus margins
+        maxWidth: "95vw", // Safety fallback
+        boxSizing: "border-box"
+      }
     }}>
       <style>{`
-        @keyframes shine {
-          0% { background-position: -200px; }
-          100% { background-position: 200px; }
-        }
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
+
+        @media (max-width: 576px) {
+          .newsletter-container h3 {
+            font-size: 18px;
+          }
+          .newsletter-container input, .newsletter-container button {
+            font-size: 13px;
+            padding: 10px 14px;
+          }
+        }
+        
       `}</style>
 
-      <h3 style={{
-        color: "black",
-        fontWeight: "bold",
-        fontSize: "20px",
-        textAlign: "center",
-        marginBottom: "20px"
-      }}>
-        நம்முடைய செய்திமடலுக்கு பதிவு செய்யுங்கள்
-      </h3>
+      <div className="newsletter-container">
+        <h3 style={{
+          color: "black",
+          fontWeight: "bold",
+          fontSize: "20px",
+          textAlign: "center",
+          marginBottom: "20px"
+        }}>
+          நம்முடைய செய்திமடலுக்கு பதிவு செய்யுங்கள்
+        </h3>
 
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        <input 
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="மின்னஞ்சலை உள்ளிடவும்"
-          required
-          style={{
-            border: "1px solid rgba(0, 0, 0, 0.3)",
-            borderRadius: "27px",
-            padding: "12px 16px",
-            background: "rgba(255, 255, 255, 0.2)",
-            backdropFilter: "blur(5px)",
-            WebkitBackdropFilter: "blur(5px)",
-            fontSize: "14px",
-            outline: "none",
-            transition: "all 0.3s ease",
-            width: "100%",
-            color: "black"
-          }}
-        />
-        <button 
-          type="submit"
-          disabled={isLoading || !email}
-          style={{
-            background: "rgba(1, 24, 216, 0.7)",
-            boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
-            border: "1px solid rgba(255, 255, 255, 0.3)",
-            padding: "12px 24px",
-            borderRadius: "27px",
-            color: "white",
-            fontWeight: "500",
-            fontSize: "14px",
-            cursor: "pointer",
-            transition: "all 0.3s ease",
-            width: "100%",
-            opacity: isLoading || !email ? 0.7 : 1
-          }}
-        >
-          {isLoading ? 'அனுப்பப்படுகிறது...' : 'பதிவுசெய்யவும்'}
-        </button>
-      </form>
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          <input 
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="மின்னஞ்சலை உள்ளிடவும்"
+            required
+            style={{
+              border: "1px solid rgba(0, 0, 0, 0.3)",
+              borderRadius: "27px",
+              padding: "12px 16px",
+              background: "rgba(255, 255, 255, 0.2)",
+              backdropFilter: "blur(5px)",
+              fontSize: "14px",
+              outline: "none",
+              transition: "all 0.3s ease",
+              width: "100%",
+              color: "black"
+            }}
+          />
+          <button 
+            type="submit"
+            disabled={isLoading || !email}
+            style={{
+              background: "rgba(1, 24, 216, 0.7)",
+              boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
+              border: "1px solid rgba(255, 255, 255, 0.3)",
+              padding: "12px 24px",
+              borderRadius: "27px",
+              color: "white",
+              fontWeight: "500",
+              fontSize: "14px",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              width: "100%",
+              opacity: isLoading || !email ? 0.7 : 1
+            }}
+          >
+            {isLoading ? 'அனுப்பப்படுகிறது...' : 'பதிவுசெய்யவும்'}
+          </button>
+        </form>
+      </div>
 
       {message && (
         <div style={{
           position: "absolute",
-          bottom: "-45px",
+          bottom: "-50px",
           left: "0",
           right: "0",
           color: message.includes('✅') ? "#4CAF50" : "#F44336",

@@ -51,7 +51,7 @@ function ImgOverlayExample({ title, description, image }) {
         >
            {description?.length > 100?description.slice(0, 100) + "...": description}
         </Card.Text>
-        <Card.Text>Last updated 3 mins ago</Card.Text>
+        <Card.Text></Card.Text>
       </Card.ImgOverlay>
     </Card>
   );
