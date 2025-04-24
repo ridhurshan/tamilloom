@@ -18,6 +18,7 @@ import SocialMediaNavbar from "./components/SocialMediaNavbar";
 import Newsletter from './components/Newsletter.jsx';
 import Comment from './components/Comment.jsx';
 import Load from "./components/Load.jsx"
+import { isMobile } from 'react-device-detect';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setNewsData, setLoading, setError } from './redux/store/newsSlice.js';
@@ -63,6 +64,8 @@ function App() {
     fetchNewsData();
   }, []);
 
+  //const importantNews = [world[0], local[0], sports[0], technology[0]];
+
   //time
       const now = new Date();
 
@@ -92,8 +95,15 @@ function App() {
     return (
       <div>
         <div className="parent">
-          <div className="div1"><Navbar /><Topic title="உண்மையை 
-          நேர்மையாகச் சொல்லும் ஒவ்வொரு வார்த்தையும், ஒரு மாற்றத்தின் விதையாகும்."/></div>
+          <div className="div1"><Navbar />
+          {isMobile ? (
+            null
+          ) : 
+          <Topic title="உண்மையை 
+          நேர்மையாகச் சொல்லும் ஒவ்வொரு வார்த்தையும், ஒரு மாற்றத்தின் விதையாகும்."/>
+          }
+
+          </div>
           <div className="div2">      
             {/* <Carousel world={world} />  */}
             <VideoPlayer 
@@ -119,7 +129,10 @@ function App() {
             ))}
           </div> 
           <div className="div3">
-          <VideoPlayer 
+          {isMobile ? (
+              null
+          ) : 
+              <VideoPlayer 
               src={Video}
               controls={false}
               autoPlay={true}
@@ -130,6 +143,8 @@ function App() {
                 width: '750px'
               }}
             />
+          }
+
             <Carousel world={world} /> 
             <SocialMediaNavbar/>
           </div>
@@ -139,14 +154,8 @@ function App() {
             {local?.slice(0,4).map((item, index) => (
               <NewsCard
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 image={item.image}
                 mydate={item.mydate}
               />
@@ -158,14 +167,8 @@ function App() {
             {world?.slice(0, 1).map((item, index) => (
               <ImageNews
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 image={item.image}
                 mydate={item.mydate}
               />
@@ -175,14 +178,8 @@ function App() {
             {world?.slice(0, 1).map((item, index) => (
               <ImageNews
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 mydate={item.mydate}
               />
             ))}
@@ -191,14 +188,8 @@ function App() {
             {world?.slice(1, 2).map((item, index) => (
               <ImageNews
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 image={item.image}
                 mydate={item.mydate}
               />
@@ -208,14 +199,8 @@ function App() {
             {world?.slice(2, 3).map((item, index) => (
               <ImageNews
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 image={item.image}
                 mydate={item.mydate}
               />
@@ -226,14 +211,8 @@ function App() {
             {sports?.slice(0,4).map((item, index) => (
               <NewsCard
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 image={item.image}
                 mydate={item.mydate}
               />
@@ -244,14 +223,8 @@ function App() {
             {technology?.slice(0,4).map((item, index) => (
               <NewsCard
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 image={item.image}
                 mydate={item.mydate}
               />
@@ -263,14 +236,8 @@ function App() {
             {feature?.slice(0,5).map((item, index) => (
               <NewsCard2
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 image={item.image}
                 mydate={item.mydate}
               />
@@ -282,14 +249,8 @@ function App() {
             {business?.slice(0,5).map((item, index) => (
               <NewsCard2
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 image={item.image}
                 mydate={item.mydate}
               />
@@ -300,20 +261,20 @@ function App() {
             {events?.slice(0,5).map((item, index) => (
               <NewsCard2
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 image={item.image}
                 mydate={item.mydate}
               />
             ))}
           </div>
-          <div className="div14"><Topic title="முக்கிய செய்திகள் "/></div>
+          <div className="div14">
+              {isMobile ? (
+                  <Topic title="Tamil LOom "/>
+              ) : 
+                  <Topic title="முக்கிய செய்திகள்" />
+              }
+            </div>
   
           <div className="div15">
             <div className="div151"><Topic title="ஆரோக்கியம்"/></div>
@@ -321,14 +282,8 @@ function App() {
               {health?.slice(0, 2).map((item, index) => (
                 <NewsCard
                   key={index}
-                  title={item.title?.length > 100
-                      ? item.title.slice(0, 100) + "..."
-                      : item.title
-                  }
-                  description={item.description?.length > 100
-                    ? item.description.slice(0, 100) + "..."
-                    : item.description
-                  }
+                  title={ item.title}
+                  description={item.description}
                   image={item.image}
                   mydate={item.mydate}
                 />
@@ -338,14 +293,8 @@ function App() {
               {health?.slice(2, 4).map((item, index) => (
                 <NewsCard
                   key={index}
-                  title={item.title?.length > 100
-                      ? item.title.slice(0, 100) + "..."
-                      : item.title
-                  }
-                  description={item.description?.length > 100
-                    ? item.description.slice(0, 100) + "..."
-                    : item.description
-                  }
+                  title={ item.title}
+                  description={item.description}
                   image={item.image}
                   mydate={item.mydate}
                 />
@@ -355,14 +304,8 @@ function App() {
               {health?.slice(4, 6).map((item, index) => (
                 <NewsCard
                   key={index}
-                  title={item.title?.length > 100
-                      ? item.title.slice(0, 100) + "..."
-                      : item.title
-                  }
-                  description={item.description?.length > 100
-                    ? item.description.slice(0, 100) + "..."
-                    : item.description
-                  }
+                  title={ item.title}
+                  description={item.description}
                   image={item.image}
                   mydate={item.mydate}
                 />
@@ -378,14 +321,8 @@ function App() {
             {cinema?.slice(0,4).map((item, index) => (
               <NewsCard
                 key={index}
-                title={item.title?.length > 100
-                    ? item.title.slice(0, 100) + "..."
-                    : item.title
-                }
-                description={item.description?.length > 100
-                  ? item.description+"..."+ item.mydate
-                  : item.description
-                }
+                title={ item.title}
+                description={item.description}
                 image={item.image}
                 mydate={item.mydate}
               />

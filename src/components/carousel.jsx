@@ -4,6 +4,7 @@ import { showModal } from '../redux/store/modalSlice';
 
 function UncontrolledCarousel({ world }) {
   const dispatch = useDispatch();
+
   return (
     <Carousel>
       {world.slice(0, 3).map((i, index) => {
@@ -12,7 +13,7 @@ function UncontrolledCarousel({ world }) {
             title: i.title,
             description: i.description,
             image: i.image,
-            mydate:i.mydate
+            mydate:i.mydate,
           }));
         };
 
@@ -35,24 +36,19 @@ function UncontrolledCarousel({ world }) {
                 fontSize: '1.0rem',                
                 padding: '0px 10px',
                 fontWeight: 'bold',
+                background: 'rgba(0, 0, 0, 0.6)',
               }}>
-                {/* {i.title?.length > 100? i.title.slice(0, 100) + "...": i.title} */}
+                {i.mydate}<br></br>
+                {i.title?.length > 100? i.title.slice(0, 100) + "...": i.title}
               </h3>
               <p
                 style={{
-                  fontSize: '1.0rem',
-                  lineHeight: '1.0em',
-                  fontWeight: 'bold',
-                  zIndex: 10,
-                  background: 'rgba(0, 0, 0, 0.4)',
-                  padding: '5px',
-                  borderRadius: '5px',
-                  position: 'absolute', // Changed to absolute
-                  bottom: 0,           // Positioned at the bottom
-                  left: 0,             // Align to the left
-                  right: 0,            // Align to the right to take full width
+                        fontSize: '0.9rem',
+                        padding: '5px 10px',
+                        background: 'rgba(0, 0, 0, 0.6)',
                       }}>
-                {i.title?.length > 100? i.title.slice(0, 100) + "...": i.title}                         </p>
+                      {i.description?.length > 100? i.description.slice(0, 100) + "...": i.description}
+                      </p>
             </Carousel.Caption>
           </Carousel.Item>
         );

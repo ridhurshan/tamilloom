@@ -48,7 +48,7 @@ function ImgOverlayExample({ title, description, image, mydate }) {
                       right: 0,            // Align to the right to take full width
                     }}
                 >
-                  {mydate}
+                    {mydate}<br></br>
                     {title?.length > 50 ? title.slice(0, 100) + "..." : title}
                 </Card.Title>
             </Card.ImgOverlay>
