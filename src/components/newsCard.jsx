@@ -4,14 +4,15 @@ import Col from 'react-bootstrap/Col';
 import { useDispatch } from 'react-redux';
 import { showModal } from '../redux/store/modalSlice';
 
-function BorderExample({ title, description, image }) {
+function BorderExample({ title, description, image,time }) {
   const dispatch = useDispatch();
 
   const openModal = () => {
     dispatch(showModal({
       title,
       description,
-      image
+      image,
+      time
     }));
   };
 
@@ -31,7 +32,7 @@ function BorderExample({ title, description, image }) {
           }}
         >
           <Row className="g-0" style={{ height: '100%' }}>
-            <Col xs={4} md={4} style={{ overflow: 'hidden' }}>
+          <Col xs={4} md={4} style={{ overflow: 'hidden', position: 'relative' }}>
               <Card.Img
                 src={image}
                 alt="Card side"
@@ -41,6 +42,24 @@ function BorderExample({ title, description, image }) {
                   objectFit: 'cover',
                 }}
               />
+              <div
+                style={{
+                  color:"white",
+                  fontSize: '1.0rem',
+                  lineHeight: '1.0em',
+                  fontWeight: 'bold',
+                  zIndex: 10,
+                  background: 'rgba(0, 0, 0, 0.6)',
+                  padding: '5px',
+                  borderRadius: '5px',
+                  position: 'absolute', // Changed to absolute
+                  top: 0,           // Positioned at the bottom
+                  left: 0,             // Align to the left
+                  right: 0,            // Align to the right to take full width
+                }}
+              >
+                {time}
+              </div>
             </Col>
             <Col xs={8} md={8}>
               <div
