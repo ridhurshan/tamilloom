@@ -110,7 +110,7 @@ function App() {
               src={Video2}
               controls={true}
               autoPlay={true}
-              loop={true}
+              loop={false}
               // You can override default styles if needed
               style={{
                 height: '300px',

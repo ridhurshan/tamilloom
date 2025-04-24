@@ -20,6 +20,9 @@ const router = createBrowserRouter([
     path: "/page/:category",
     element: <Page />,
     // loader: rootLoader,
+  },
+  {
+    basename: "/tamilloom" 
   }
 
 ])
