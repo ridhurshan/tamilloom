@@ -11,7 +11,8 @@ function UncontrolledCarousel({ world }) {
           dispatch(showModal({
             title: i.title,
             description: i.description,
-            image: i.image
+            image: i.image,
+            mydate:i.mydate
           }));
         };
 

@@ -25,7 +25,7 @@ import { setNewsData, setLoading, setError } from './redux/store/newsSlice.js';
 function App() {
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
-  const { world, local, business, technology, health, events, sports, cinema,feature, ad, time,
+  const { world, local, business, technology, health, events, sports, cinema,feature, ad, mydate,
     loading, error } = news;
 
   const fetchNewsData = () => {
@@ -40,7 +40,7 @@ function App() {
 
           // ✅ Dynamically categorize
           const categories = ['world', 'local', 'business', 'technology', 'health', 
-          'events', 'sports', 'cinema',"feature","ad","time","loading","error"];
+          'events', 'sports', 'cinema',"feature","ad","loading","error"];
           const categorizedData = {};
 
           categories.forEach((category) => {
@@ -114,7 +114,7 @@ function App() {
                 title={ item.title}
                 description={item.description}
                 image={item.image}
-                time={item.time}
+                mydate={item.mydate}
               />
             ))}
           </div> 
@@ -148,7 +148,7 @@ function App() {
                   : item.description
                 }
                 image={item.image}
-                time={item.time}
+                mydate={item.mydate}
               />
             ))}
             <br/>
@@ -167,6 +167,7 @@ function App() {
                   : item.description
                 }
                 image={item.image}
+                mydate={item.mydate}
               />
             ))}
           </div>
@@ -182,7 +183,7 @@ function App() {
                   ? item.description.slice(0, 100) + "..."
                   : item.description
                 }
-                image={item.image}
+                mydate={item.mydate}
               />
             ))}
           </div>
@@ -199,6 +200,7 @@ function App() {
                   : item.description
                 }
                 image={item.image}
+                mydate={item.mydate}
               />
             ))}
           </div>
@@ -215,6 +217,7 @@ function App() {
                   : item.description
                 }
                 image={item.image}
+                mydate={item.mydate}
               />
             ))}
           </div>
@@ -232,7 +235,7 @@ function App() {
                   : item.description
                 }
                 image={item.image}
-                time={item.time}
+                mydate={item.mydate}
               />
             ))}
           </div>
@@ -250,6 +253,7 @@ function App() {
                   : item.description
                 }
                 image={item.image}
+                mydate={item.mydate}
               />
             ))}
           </div>
@@ -268,6 +272,7 @@ function App() {
                   : item.description
                 }
                 image={item.image}
+                mydate={item.mydate}
               />
             ))}
           </div>
@@ -286,6 +291,7 @@ function App() {
                   : item.description
                 }
                 image={item.image}
+                mydate={item.mydate}
               />
             ))}
           </div>
@@ -303,6 +309,7 @@ function App() {
                   : item.description
                 }
                 image={item.image}
+                mydate={item.mydate}
               />
             ))}
           </div>
@@ -323,7 +330,7 @@ function App() {
                     : item.description
                   }
                   image={item.image}
-                  time={item.time}
+                  mydate={item.mydate}
                 />
               ))}
             </div>
@@ -340,7 +347,7 @@ function App() {
                     : item.description
                   }
                   image={item.image}
-                  time={item.time}
+                  mydate={item.mydate}
                 />
               ))}
             </div>
@@ -357,7 +364,7 @@ function App() {
                     : item.description
                   }
                   image={item.image}
-                  time={item.time}
+                  mydate={item.mydate}
                 />
               ))}
             </div>
@@ -376,11 +383,11 @@ function App() {
                     : item.title
                 }
                 description={item.description?.length > 100
-                  ? item.description.slice(0, 100) + "..."
+                  ? item.description+"..."+ item.mydate
                   : item.description
                 }
                 image={item.image}
-                time={item.time}
+                mydate={item.mydate}
               />
             ))}
           </div>

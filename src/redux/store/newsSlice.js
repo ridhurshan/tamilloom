@@ -11,7 +11,7 @@ const initialState = {
   cinema: [],
   feature: [],
   ad: [],
-  time:[],
+  // mydate:[],
   loading: false,
   error: null
 };

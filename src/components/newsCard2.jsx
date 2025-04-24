@@ -3,14 +3,15 @@ import Card from 'react-bootstrap/Card';
 import { useDispatch } from 'react-redux';
 import { showModal } from '../redux/store/modalSlice';
 
-function NewsCard({ title, description, image }) {
+function NewsCard({ title, description, image,mydate }) {
   const dispatch = useDispatch();
 
   const openModal = () => {
     dispatch(showModal({
       title:title,
       description:description,
-      image:image
+      image:image,
+      mydate:mydate
     }));
   };
 
@@ -49,7 +50,7 @@ function NewsCard({ title, description, image }) {
                   right: 0,            // Align to the right to take full width
                 }}
               >
-                {"time"}
+                {mydate}
               </div>
       <Card.Body >
         <Card.Title               

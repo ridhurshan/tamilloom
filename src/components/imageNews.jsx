@@ -2,14 +2,15 @@ import Card from 'react-bootstrap/Card';
 import { useDispatch } from 'react-redux';
 import { showModal } from '../redux/store/modalSlice';
 
-function ImgOverlayExample({ title, description, image }) {
+function ImgOverlayExample({ title, description, image, mydate }) {
     const dispatch = useDispatch();
 
     const openModal = () => {
         dispatch(showModal({
             title: title,
             description: description,
-            image: image
+            image: image,
+            mydate:mydate
         }));
     };
 
@@ -47,6 +48,7 @@ function ImgOverlayExample({ title, description, image }) {
                       right: 0,            // Align to the right to take full width
                     }}
                 >
+                  {mydate}
                     {title?.length > 50 ? title.slice(0, 100) + "..." : title}
                 </Card.Title>
             </Card.ImgOverlay>

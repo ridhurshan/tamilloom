@@ -53,7 +53,7 @@ const Newsletter = () => {
           margin: 20px 10px;
           padding: 24px;
           border-radius: 28px;
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(0, 0, 0, 0.1);
           width: 90%;
           max-width: 500px;
           position: relative;

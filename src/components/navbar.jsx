@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { openSearch } from '../redux/store/searchResults';
 import Comment from './Comment.jsx';
 import "./navbar.css"
+import Image2 from "../Images/img2.png"
 
 function NavScrollExample() {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ function NavScrollExample() {
       <Navbar expand="lg" className="glass-navbar" xs={3} sm={6} md={12}  >
         <Container fluid>
           <Navbar.Brand as={Link} to="/" className="fw-bold fs-5 text-dark">
-            Tamil LOom
+              Tamil L0om
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
