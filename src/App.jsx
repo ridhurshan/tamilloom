@@ -84,7 +84,10 @@ function App() {
 
 
   return (
+    <>
+
     <div>
+
       <div className="parent">
         <div className="div1"><Navbar />
         {isNotMobile && (
@@ -402,6 +405,7 @@ function App() {
         <SearchResults/>
       </div>
     </div>
+    </>
   );
 }
 

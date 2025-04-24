@@ -42,44 +42,46 @@ const Newsletter = () => {
   };
 
   return (
-    <div style={{
-      // Default styles (for all screens)
-      margin: "20px 10px",
-      padding: "24px",
-      borderRadius: "28px",
-      background: "rgba(255, 255, 255, 0.1)",
-      width: "90%",
-      maxWidth: "500px",
-
-      // Mobile override (applies only ≤ 768px)
-      "@media (max-width: 768px)": {
-        margin: "16px 2px", // Changed from 10px to 0 on sides
-        padding: "8px",
-        borderRadius: "20px",
-        background: "rgba(255, 255, 255, 0.9)",
-        boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-        border: "1px solid rgba(0, 0, 0, 0.1)",
-        width: "calc(100vw - 32px)", // Full viewport width minus margins
-        maxWidth: "95vw", // Safety fallback
-        boxSizing: "border-box"
-      }
-    }}>
+    <div className="newsletter-box">
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 576px) {
+        .newsletter-box {
+          margin: 20px 10px;
+          padding: 24px;
+          border-radius: 28px;
+          background: rgba(255, 255, 255, 0.1);
+          width: 90%;
+          max-width: 500px;
+          position: relative;
+        }
+
+        @media (max-width: 768px) {
+          .newsletter-box {
+            margin: 16px 2px;
+            padding: 8px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            width: calc(100vw - 32px);
+            max-width: 95vw;
+            box-sizing: border-box;
+          }
+
           .newsletter-container h3 {
             font-size: 18px;
           }
-          .newsletter-container input, .newsletter-container button {
+
+          .newsletter-container input,
+          .newsletter-container button {
             font-size: 13px;
             padding: 10px 14px;
           }
         }
-        
       `}</style>
 
       <div className="newsletter-container">

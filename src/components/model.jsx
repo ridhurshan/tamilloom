@@ -69,8 +69,8 @@ function ModalWrapper() {
             }}
           />
         )}
-        <p style={{ color: 'rgba(255,255,255,0.8)' }}>
-          {modalContent?.description || 'Modal Content goes here.'}
+        <p style={{ color: "black" }}>
+          {modalContent?.description || ' News '}
         </p>
       </Modal.Body>
 

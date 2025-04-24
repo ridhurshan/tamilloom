@@ -135,7 +135,7 @@
 }
 
 /* General styling for all screen sizes */
-.div1 { background-color: antiquewhite; }
+/* .div1 { background-color: antiquewhite; }
 .div2 { background-color: rgb(126, 82, 25); }
 .div3 { background-color: rgb(100, 151, 33); }
 .div4 { background-color: rgb(26, 168, 85); }
@@ -151,7 +151,7 @@
 .div14 { background-color: rgb(118, 158, 139); }
 .div15 { background-color: rgb(102, 21, 39); }
 .div16 { background-color: rgb(40, 107, 81); }
-.div17 { background-color: rgb(199, 58, 180); }
+.div17 { background-color: rgb(199, 58, 180); } */
 
 /* Nested grid colors */
 /* .div151 { background-color: aqua;  }
@@ -172,3 +172,6 @@
   max-height: none; /* Remove max-height for mobile */
   align-self: stretch; /* Stretch to fill the row on mobile */
 }
+
+
+
