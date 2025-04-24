@@ -4,7 +4,6 @@ import { showModal } from '../redux/store/modalSlice';
 
 function UncontrolledCarousel({ world }) {
   const dispatch = useDispatch();
-
   return (
     <Carousel>
       {world.slice(0, 3).map((i, index) => {

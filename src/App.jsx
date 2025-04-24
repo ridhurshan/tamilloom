@@ -26,7 +26,7 @@ function App() {
   const isNotMobile = useMediaQuery({ minWidth: 769 }); 
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
-  const { world, local, business, technology, health, events, sports, cinema,feature, loading, error } = news;
+  const { world, local, business, technology, health, events, sports, cinema,feature,ad, loading, error } = news;
 
   const fetchNewsData = () => {
     dispatch(setLoading(true));
@@ -40,7 +40,7 @@ function App() {
 
           // ✅ Dynamically categorize
           const categories = ['world', 'local', 'business', 'technology', 'health', 
-          'events', 'sports', 'cinema',"feature"];
+          'events', 'sports', 'cinema',"feature","ad"];
           const categorizedData = {};
 
           categories.forEach((category) => {
@@ -161,7 +161,7 @@ function App() {
             />
           ))}
           <br/>
-          <Carousel world={world} /> 
+          <Carousel world={ad} /> 
         </div>
         <div className="div5">
           {world?.slice(0, 1).map((item, index) => (
@@ -180,7 +180,7 @@ function App() {
           ))}
         </div>
         <div className="div6">      
-          {world?.slice(0, 1).map((item, index) => (
+          {local?.slice(0, 1).map((item, index) => (
             <ImageNews
               key={index}
               title={item.title?.length > 100
@@ -196,7 +196,7 @@ function App() {
           ))}
         </div>
         <div className="div7">
-          {world?.slice(1, 2).map((item, index) => (
+          {sports?.slice(1, 2).map((item, index) => (
             <ImageNews
               key={index}
               title={item.title?.length > 100
@@ -212,7 +212,7 @@ function App() {
           ))}
         </div>
         <div className="div8">      
-          {world?.slice(2, 3).map((item, index) => (
+          {cinema?.slice(2, 3).map((item, index) => (   
             <ImageNews
               key={index}
               title={item.title?.length > 100
