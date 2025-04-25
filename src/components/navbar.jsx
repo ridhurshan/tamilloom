@@ -15,7 +15,6 @@ function NavScrollExample() {
   const dispatch = useDispatch();
   const newsData = useSelector((state) => state.news);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showCommentModal, setShowCommentModal] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -43,14 +42,12 @@ function NavScrollExample() {
     dispatch(openSearch(filteredResults));
   };
 
-  const handleCommentClick = () => setShowCommentModal(true);
-  const handleCommentClose = () => setShowCommentModal(false);
 
   return (
     <>
       <Navbar expand="lg" className="glass-navbar" xs={3} sm={6} md={12}  >
         <Container fluid>
-          <Navbar.Brand as={Link} to="/" className="fw-bold fs-5 text-dark">
+          <Navbar.Brand as={Link} to="/" className="fw-bold fs-5 text-primary">
               Tamil L0om
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -68,7 +65,6 @@ function NavScrollExample() {
               <Nav.Link as={Link} to="/page/events">நிகழ்வு </Nav.Link>
               <Nav.Link as={Link} to="/page/sports">விளையாட்டு </Nav.Link>
               <Nav.Link as={Link} to="/page/cinema">சினிமா</Nav.Link>
-              <Nav.Link onClick={handleCommentClick}>கருத்துக்கள் </Nav.Link>
             </Nav>
 
             {/* 🔁 Apply form responsiveness only on small/medium screens */}
@@ -195,7 +191,6 @@ function NavScrollExample() {
         `}</style>
       </Navbar>
 
-      <Comment show={showCommentModal} handleClose={handleCommentClose} />
     </>
   );
 }
