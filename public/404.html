@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <title>Redirecting...</title>
     <script>
-      sessionStorage.redirect = location.pathname;
+      // Capture the intended path
+      sessionStorage.redirect = location.pathname.replace('/tamilloom', '');
+      // Redirect to index.html which will handle the routing
+      window.location.href = '/tamilloom/index.html';
     </script>
-    <meta http-equiv="refresh" content="0;URL='/tamilloom/'">
   </head>
   <body>
-    <p>Redirecting to home page...</p>
+    <p>Redirecting... If not automatically redirected, <a href="/tamilloom/">click here</a>.</p>
   </body>
 </html>
