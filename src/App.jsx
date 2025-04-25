@@ -140,7 +140,30 @@ function App() {
           ))}
           <br />
           <Carousel world={ad} />
-          <Nav.Link onClick={handleCommentClick}>கருத்துக்கள் </Nav.Link>
+          <br/>
+          <div
+              className="comment-header"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '10px 12px',
+                background: 'rgba(1228, 239, 231, 0.9)',
+                boxShadow: '6px 6px 10px rgba(0, 0, 0, 0.3)',
+                border: '1px solid rgba(0, 0, 0, 0.1)',
+                borderRadius: '8px',
+                margin: '10px 0',
+                borderRadius:"29px",
+                curser:"pointer",
+                fontWeight: "bold",
+                fontSize: "clamp(1rem, 4vw, 1.25rem)", // Responsive font size
+                textShadow: "0 0 10px rgba(255, 255, 255, 0.1)",
+              }}
+            >
+              
+              <Nav.Link onClick={handleCommentClick}>கருத்து தெரிவிக்க</Nav.Link>
+            </div>
+
 
         </div>
 
