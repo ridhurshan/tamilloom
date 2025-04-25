@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react'; // ✅ Added useState
 import Papa from 'papaparse';
 
 import Navbar from "./components/navbar";
@@ -17,11 +17,13 @@ import SearchResults from './components/SearchResults.jsx';
 import SocialMediaNavbar from "./components/SocialMediaNavbar";
 import Newsletter from './components/Newsletter.jsx';
 import Comment from './components/Comment.jsx';
-import Load from "./components/Load.jsx"
+import Load from "./components/Load.jsx";
 import { isMobile } from 'react-device-detect';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setNewsData, setLoading, setError } from './redux/store/newsSlice.js';
+
+import Nav from 'react-bootstrap/Nav'; // ✅ Added this import for Nav.Link
 
 function App() {
   const dispatch = useDispatch();
@@ -87,6 +89,11 @@ function App() {
   if (loading) return <Load />;
   if (error) return <div>Error: {error}</div>;
 
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const handleCommentClick = () => setShowCommentModal(true);
+  const handleCommentClose = () => setShowCommentModal(false);
+
+
   return (
     <div>
       <div className="parent">
@@ -133,6 +140,8 @@ function App() {
           ))}
           <br />
           <Carousel world={ad} />
+          <Nav.Link onClick={handleCommentClick}>கருத்துக்கள் </Nav.Link>
+
         </div>
 
         <div className="div5">
@@ -233,6 +242,7 @@ function App() {
 
         <Modal />
         <SearchResults />
+        <Comment show={showCommentModal} handleClose={handleCommentClose} />
       </div>
     </div>
   );
