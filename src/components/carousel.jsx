@@ -12,7 +12,8 @@ function UncontrolledCarousel({ world }) {
           dispatch(showModal({
             title: i.title,
             description: i.description,
-            image: i.image
+            image: i.image,
+            mydate:i.mydate,
           }));
         };
 
@@ -35,12 +36,16 @@ function UncontrolledCarousel({ world }) {
                 fontSize: '1.0rem',                
                 padding: '0px 10px',
                 fontWeight: 'bold',
-              }}>{i.title?.length > 100? i.title.slice(0, 100) + "...": i.title}
+                background: 'rgba(0, 0, 0, 0.6)',
+              }}>
+                {i.mydate}<br></br>
+                {i.title?.length > 100? i.title.slice(0, 100) + "...": i.title}
               </h3>
               <p
                 style={{
                         fontSize: '0.9rem',
                         padding: '5px 10px',
+                        background: 'rgba(0, 0, 0, 0.6)',
                       }}>
                       {i.description?.length > 100? i.description.slice(0, 100) + "...": i.description}
                       </p>

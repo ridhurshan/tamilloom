@@ -9,20 +9,26 @@ import { store } from './redux/store/store';
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import Page from './pages/page';
 import Home from './pages/home';
+import NotFound from './pages/NotFound.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // loader: rootLoader,
+    errorElement: <NotFound />
   },  
   {
     path: "/page/:category",
     element: <Page />,
-    // loader: rootLoader,
+    errorElement: <NotFound />
+  },
+  {
+    path: "*",
+    element: <NotFound />
   }
-
-])
+], {
+  basename: "/tamilloom" // Move basename here as router option
+});
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

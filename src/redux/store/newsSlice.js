@@ -9,7 +9,9 @@ const initialState = {
   events: [],
   sports: [],
   cinema: [],
-  feature:[],
+  feature: [],
+  ad: [],
+  // mydate:[],
   loading: false,
   error: null
 };
@@ -19,10 +21,12 @@ const newsSlice = createSlice({
   initialState,
   reducers: {
     setNewsData: (state, action) => {
+      // Update all categories and reset loading/error
       return {
         ...state,
         ...action.payload,
-        loading: false
+        loading: false,
+        error: null
       };
     },
     setLoading: (state, action) => {
@@ -37,26 +41,3 @@ const newsSlice = createSlice({
 
 export const { setNewsData, setLoading, setError } = newsSlice.actions;
 export default newsSlice.reducer;
-
-// import { createSlice } from '@reduxjs/toolkit';
-
-// const initialState = {
-//   world: [],
-//   local: []
-// };
-
-// const newsSlice = createSlice({
-//   name: 'news',
-//   initialState,
-//   reducers: {
-//     setWorld: (state, action) => {
-//       state.world = action.payload;
-//     },
-//     setLocal: (state, action) => {
-//       state.local = action.payload;
-//     }
-//   }
-// });
-
-// export const { setWorld, setLocal } = newsSlice.actions;
-// export default newsSlice.reducer;

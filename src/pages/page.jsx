@@ -8,15 +8,18 @@ import Footer from "../components/footer";
 import { useSelector } from 'react-redux';
 import Modal from '../components/model';
 import Pagination from '../components/Pagination';
+import { useMediaQuery } from 'react-responsive';
 
 function Page() {
+    const isNotMobile = useMediaQuery({ minWidth: 769 }); 
+
     const { category = 'world' } = useParams();
     const { [category]: currentData = [], loading, error } = useSelector((state) => state.news);
-    
+
     // Pagination state
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 7;
-    
+
     // Reset page when category changes
     useEffect(() => {
         setCurrentPage(1);
@@ -37,7 +40,7 @@ function Page() {
 
     // Calculate total pages
     const totalPages = Math.ceil(currentData.length / itemsPerPage);
-    
+
     // Get current items
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -53,39 +56,64 @@ function Page() {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div style={{ paddingBottom: '180px' }}>
+        <div className="page-container">
             <Navbar/>
             <div className="page_parent">
-                <div className="page_div1"> 
+                <div className="page_div1">
                     <Topic title={tamilTitles[category] || 'உலகம்'}/>
                 </div>
-                
-                <div className="page_div2"> 
-                    {currentItems.map((item, index) => (
-                        <NewsCard
-                            key={index}
-                            title={item.title?.length > 100
-                                ? item.title.slice(0, 100) + "..."
-                                : item.title
-                            }
-                            description={item.description?.length > 100
-                                ? item.description.slice(0, 100) + "..."
-                                : item.description
-                            }
-                            image={item.image}
-                        />
-                    ))}
-                </div>
-                
+
+
+                {isNotMobile ? (
+
+                      <div className="page_div3">
+                      {currentItems.map((item, index) => (
+                              <NewsCard
+                                  key={index}
+                                  title={item.title?.length > 100
+                                      ? item.title.slice(0, 100) + "..."
+                                      : item.title
+                                  }
+                                  description={item.description?.length > 100
+                                      ? item.description.slice(0, 100) + "..."
+                                      : item.description
+                                  }
+                                  image={item.image}
+                              />
+                          ))}
+                       </div>
+          ) : 
+          <div className="page_div2">
+          {currentItems.map((item, index) => (
+              <NewsCard
+                  key={index}
+                  title={item.title?.length > 100
+                      ? item.title.slice(0, 100) + "..."
+                      : item.title
+                  }
+                  description={item.description?.length > 100
+                      ? item.description.slice(0, 100) + "..."
+                      : item.description
+                  }
+                  image={item.image}
+              />
+          ))}
+      </div>
+          }
+
+            
+
+
+
                 <div className="page_div4">
-                    <Pagination 
+                    <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages}
                         paginate={paginate}
                     />
                     <Footer/>
                 </div>
-            </div> 
+            </div>
             <Modal />
         </div>
     );

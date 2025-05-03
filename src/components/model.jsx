@@ -51,9 +51,12 @@ function ModalWrapper() {
     //aria-labelledby="example-custom-modal-styling-title"
   >
 
-
+{/*  <Button variant="primary">Share News</Button> */}
       <Modal.Header closeButton style={{ borderBottom: '1px solid rgba(255,255,255,0.3)' }}>
-        <Modal.Title style={{ color: '#fff' }}>{modalContent?.title || 'Modal Title'}</Modal.Title>
+        <Modal.Title style={{ color: '#fff' }}>
+          {modalContent?.mydate ? `${modalContent.mydate} - ` : ''}
+          {modalContent?.title || 'Title not available'}
+        </Modal.Title>
       </Modal.Header>
 
       <Modal.Body style={{backgroundColor:"white"}}>
@@ -69,8 +72,8 @@ function ModalWrapper() {
             }}
           />
         )}
-        <p style={{ color: 'rgba(255,255,255,0.8)' }}>
-          {modalContent?.description || 'Modal Content goes here.'}
+        <p style={{ color: "black" }}>
+          {modalContent?.description || ' News '}
         </p>
       </Modal.Body>
 
