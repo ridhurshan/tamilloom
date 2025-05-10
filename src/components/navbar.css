@@ -11,7 +11,7 @@
   
     .nav-link {
       padding: 8px !important; /* Adjust padding for better touch targets */
-      font-size: 0.5rem !important; /* Slightly smaller font for links */
+      font-size: 0.3rem !important; /* Slightly smaller font for links */
     }
   
     .search-form {

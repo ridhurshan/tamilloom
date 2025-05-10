@@ -30,7 +30,7 @@ function NewsCard({ title, description, image,mydate }) {
     >
       <Card.Img xs={3} sm={6} md={12}
         variant="top"
-        src={image}
+        src={image ||null}
         alt={title}
         style={{ height: '150px', objectFit: 'cover' }}
       />

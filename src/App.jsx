@@ -30,10 +30,15 @@ function App() {
   const news = useSelector((state) => state.news);
   const { world, local, business, technology, health, events, sports, cinema, feature, ad, loading, error } = news;
 
+  const INITIAL_BATCH_SIZE = 70;
+
   const fetchNewsData = () => {
     const cached = sessionStorage.getItem('newsData');
+    const cachedTime = sessionStorage.getItem('newsDataTime');
+    const now = Date.now();
+    const tenMinutes = 10 * 60 * 1000;
 
-    if (cached) {
+    if (cached && cachedTime && now - cachedTime < tenMinutes) {
       dispatch(setNewsData(JSON.parse(cached)));
       dispatch(setLoading(false));
       return;
@@ -47,19 +52,32 @@ function App() {
         header: true,
         complete: (results) => {
           const data = results.data;
-
           const categories = ['world', 'local', 'business', 'technology', 'health', 'events', 'sports', 'cinema', 'feature', 'ad'];
           const categorizedData = {};
 
           categories.forEach((category) => {
-            categorizedData[category] = data.filter(
-              (row) => row.section?.trim().toLowerCase() === category
-            );
+            const all = data.filter(row => row.section?.trim().toLowerCase() === category);
+            categorizedData[category] = all.slice(0, INITIAL_BATCH_SIZE);
+            categorizedData[`${category}Remaining`] = all.slice(INITIAL_BATCH_SIZE);
           });
 
           sessionStorage.setItem('newsData', JSON.stringify(categorizedData));
+          sessionStorage.setItem('newsDataTime', now.toString());
           dispatch(setNewsData(categorizedData));
           dispatch(setLoading(false));
+
+          // ⏳ Background load remaining data
+          setTimeout(() => {
+            const fullData = { ...categorizedData };
+            categories.forEach(category => {
+              fullData[category] = [
+                ...(fullData[category] || []),
+                ...(fullData[`${category}Remaining`] || [])
+              ];
+              delete fullData[`${category}Remaining`];
+            });
+            dispatch(setNewsData(fullData));
+          }, 1000);
         },
         error: (error) => {
           dispatch(setError(error.message));
@@ -70,7 +88,9 @@ function App() {
   };
 
   useEffect(() => {
-    if (!world || world.length === 0) {
+    const categories = [world, local, business, technology, health, events, sports, cinema, feature, ad];
+    const isAnyEmpty = categories.some((cat) => !cat || cat.length === 0);
+    if (isAnyEmpty) {
       fetchNewsData();
     }
   }, []);
@@ -105,13 +125,20 @@ function App() {
         </div>
 
         <div className="div2">
-          <VideoPlayer
-            src={Video2}
-            controls={true}
-            autoPlay={true}
-            loop={false}
-            style={{ height: '300px', width: '420px' }}
-          />
+          <div style={{ width: '100%', maxWidth: '420px', aspectRatio: '14 / 10' }}>
+              <VideoPlayer
+                src={Video2}
+                controls={true}
+                autoPlay={true}
+                loop={false}
+                muted={true}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+          </div>
           <Topic title="உலகம்" />
           {world?.slice(0, 5).map((item, index) => (
             <NewsCard key={index} {...item} />
@@ -119,15 +146,21 @@ function App() {
         </div>
 
         <div className="div3">
-          {!isMobile && (
-            <VideoPlayer
-              src={Video}
-              controls={false}
-              autoPlay={true}
-              loop={true}
-              style={{ height: '150px', width: '750px' }}
-            />
-          )}
+            {!isMobile && (
+              <div style={{ width: '100%', maxWidth: '750px', aspectRatio: '5 / 1' }}>
+                <VideoPlayer
+                  src={Video}
+                  controls={false}
+                  autoPlay={true}
+                  loop={true}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+              </div>
+            )}
           <Carousel world={world} />
           <SocialMediaNavbar />
         </div>
@@ -167,26 +200,26 @@ function App() {
 
         </div>
 
-        <div className="div5">
-          {world?.slice(0, 1).map((item, index) => (
+        <div className="div5"> 
+          {local?.slice(0, 1).map((item, index) => (
             <ImageNews key={index} {...item} />
           ))}
         </div>
 
         <div className="div6">
-          {world?.slice(0, 1).map((item, index) => (
+          {local?.slice(1, 2).map((item, index) => (
             <ImageNews key={index} {...item} />
           ))}
         </div>
 
         <div className="div7">
-          {world?.slice(1, 2).map((item, index) => (
+          {world?.slice(0,1).map((item, index) => (
             <ImageNews key={index} {...item} />
           ))}
         </div>
 
         <div className="div8">
-          {world?.slice(2, 3).map((item, index) => (
+          {sports?.slice(0,1).map((item, index) => (
             <ImageNews key={index} {...item} />
           ))}
         </div>
