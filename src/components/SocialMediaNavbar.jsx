@@ -23,7 +23,7 @@ function SocialMediaNavbar() {
          target="_blank"  rel="noopener noreferrer" className="mx-2">
           <FaFacebook  
             size={24} 
-            style={{ color: "rgb(18, 52, 88)1B56FD", filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
+            style={{ color:"#123458" , filter: "drop-shadow(0 0 5px rgba(245, 238, 220,1.2))" }} 
           />
         </Navbar.Brand>
         <Navbar.Brand as={Link} to="https://chat.whatsapp.com/Jtk8rVSAPXjGzktVsZMMaa" 

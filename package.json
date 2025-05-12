@@ -1,11 +1,12 @@
 {
   "name": "my-app",
+  "homepage": "https://ridhurshan.github.io/tamilloom",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "preview": "vite preview",
-    "dev": "vite",
+    "dev": "vite --base=/tamilloom/",
+    "preview": "vite preview --base=/tamilloom/",
     "build": "vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"

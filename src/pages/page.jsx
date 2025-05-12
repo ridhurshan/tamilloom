@@ -57,7 +57,7 @@ function Page() {
 
     return (
         <div className="page-container">
-            <Navbar/>
+            {/* <Navbar/> */}
             <div className="page_parent">
                 <div className="page_div1">
                     <Topic title={tamilTitles[category] || 'உலகம்'}/>
@@ -111,7 +111,7 @@ function Page() {
                         totalPages={totalPages}
                         paginate={paginate}
                     />
-                    <Footer/>
+                    {/* <Footer/> */}
                 </div>
             </div>
             <Modal />
