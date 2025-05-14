@@ -5,11 +5,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --base=/tamilloom/",
-    "preview": "vite preview --base=/tamilloom/",
+    "dev": "vite",
     "build": "vite build",
+    "build:ghpages": "vite build --mode=ghpages",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "build:gh": "vite build --mode=ghpages",
+    "deploy": "npm run build:gh && gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",

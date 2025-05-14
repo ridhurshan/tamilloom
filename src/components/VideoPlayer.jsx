@@ -1,12 +1,13 @@
 import React from 'react';
 
-function VideoPlayer({ src, style = {}, controls = true, autoPlay = false, loop = false }) {
+function VideoPlayer({ src, style = {}, controls = true, autoPlay = false, loop = false,muted=true }) {
   return (
     <video
       src={src}
       controls={controls}
       autoPlay={autoPlay}
       loop={loop}
+      muted={muted}
       style={{
         height: '150px',
         width: '850px',

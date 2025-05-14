@@ -22,6 +22,7 @@ const newsSlice = createSlice({
   reducers: {
     setNewsData: (state, action) => {
       // Update all categories and reset loading/error
+      console.log("redux setNewsData"+state+action);
       return {
         ...state,
         ...action.payload,
@@ -31,10 +32,12 @@ const newsSlice = createSlice({
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
+      console.log("redux setLoading"+action.payload);
     },
     setError: (state, action) => {
       state.error = action.payload;
       state.loading = false;
+      console.log("redux setError"+action.payload);
     }
   }
 });

@@ -2,7 +2,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig({
-  base: '/', // ✅ Required for Firebase
+export default defineConfig(({ mode }) => ({
+  base:'/',  // 👈 Adjust base path based on mode
   plugins: [react()]
-})
+}))

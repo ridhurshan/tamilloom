@@ -50,7 +50,12 @@ function Page() {
     const paginate = (pageNumber) => {
         if (pageNumber < 1 || pageNumber > totalPages) return;
         setCurrentPage(pageNumber);
+        window.scrollTo(0, 0);
     };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, [category]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -70,14 +75,8 @@ function Page() {
                       {currentItems.map((item, index) => (
                               <NewsCard
                                   key={index}
-                                  title={item.title?.length > 100
-                                      ? item.title.slice(0, 100) + "..."
-                                      : item.title
-                                  }
-                                  description={item.description?.length > 100
-                                      ? item.description.slice(0, 100) + "..."
-                                      : item.description
-                                  }
+                                  title={item.title}
+                                  description={item.description}
                                   image={item.image}
                               />
                           ))}
@@ -87,17 +86,12 @@ function Page() {
           {currentItems.map((item, index) => (
               <NewsCard
                   key={index}
-                  title={item.title?.length > 100
-                      ? item.title.slice(0, 100) + "..."
-                      : item.title
-                  }
-                  description={item.description?.length > 100
-                      ? item.description.slice(0, 100) + "..."
-                      : item.description
-                  }
+                  title={item.title}
+                  description={item.description}
                   image={item.image}
               />
           ))}
+          
       </div>
           }
 
@@ -110,6 +104,7 @@ function Page() {
                         currentPage={currentPage}
                         totalPages={totalPages}
                         paginate={paginate}
+                        
                     />
                     {/* <Footer/> */}
                 </div>

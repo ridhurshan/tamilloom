@@ -27,7 +27,7 @@ function Home() {
   const { world, local, business, technology, health, events, sports, cinema, 
           feature, ad, loading, error } = news;
 
-  const INITIAL_BATCH_SIZE = 50;
+  const INITIAL_BATCH_SIZE = 80;
 
   const fetchNewsData = () => {
     const cached = sessionStorage.getItem('newsData');
@@ -55,10 +55,12 @@ function Home() {
           const categorizedData = {};
 
           categories.forEach((category) => {
-            const all = data.filter(row => row.section?.trim().toLowerCase() === category);
+            const all = data.filter(row => row.section && row.section.trim().toLowerCase() === category);
+            console.log(`Found ${all.length} articles for category: ${category}`);
             categorizedData[category] = all.slice(0, INITIAL_BATCH_SIZE);
             categorizedData[`${category}Remaining`] = all.slice(INITIAL_BATCH_SIZE);
           });
+          
 
           sessionStorage.setItem('newsData', JSON.stringify(categorizedData));
           sessionStorage.setItem('newsDataTime', now.toString());
@@ -75,6 +77,10 @@ function Home() {
               delete fullData[`${category}Remaining`];
             });
             dispatch(setNewsData(fullData));
+            console.log("Parsed data:", results.data);
+            console.log("Loading:", loading);
+            console.log("Error:", error);
+            console.log("News data:", news);
           }, 1000);
         },
         error: (error) => {
@@ -93,6 +99,12 @@ function Home() {
       fetchNewsData();
     }
   }, []);
+
+  // results.data.forEach((item, index) => {
+  //   if (!item._1 || !item._2) {
+  //     console.log(`Item at index ${index} is missing data:`, item);
+  //   }
+  // });
 
   const now = new Date();
   const options = { day: '2-digit', month: 'short', year: 'numeric', weekday: 'short' };
@@ -132,7 +144,7 @@ function Home() {
         {!isMobile && (
           <div style={{ width: '100%', maxWidth: '750px', aspectRatio: '5 / 1' }}>
             <VideoPlayer src={Video} autoPlay={true} 
-            loop={true} muted={true} controls={false}  style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            loop={true} muted={false} controls={false}  style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         )}
         <Carousel world={world} />
