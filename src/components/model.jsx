@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { hideModal } from '../redux/store/modalSlice';
+import DOMPurify from 'dompurify';
 
 function ModalWrapper() {
   const dispatch = useDispatch();
@@ -42,13 +43,13 @@ function ModalWrapper() {
   return (
 
     <Modal
-    show={isOpen}
-    onHide={() => dispatch(hideModal())}
-    size="lg"
-    aria-labelledby="contained-modal-title-vcenter"
-    centered
-    dialogClassName="modal-90w"
-    //aria-labelledby="example-custom-modal-styling-title"
+      show={isOpen}
+      onHide={() => dispatch(hideModal())}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      dialogClassName="modal-90w" // this line currently does nothing unless you define the class
+    
   >
 
 {/*  <Button variant="primary">Share News</Button> */}
@@ -59,7 +60,7 @@ function ModalWrapper() {
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body style={{backgroundColor:"white"}}>
+      {/* <Modal.Body style={{backgroundColor:"white"}}>
         {modalContent?.image && (
           <img
             src={modalContent.image}
@@ -75,7 +76,29 @@ function ModalWrapper() {
         <p style={{ color: "black" }}>
           {modalContent?.description || ' News '}
         </p>
-      </Modal.Body>
+      </Modal.Body> */}
+
+        <Modal.Body style={{ backgroundColor: 'white' }}>
+          {modalContent?.image && (
+            <img
+              src={modalContent.image}
+              alt={modalContent.title}
+              style={{
+                width: '100%',
+                objectFit: 'cover',
+                marginBottom: '1rem',
+                borderRadius: '8px',
+              }}
+            />
+          )}
+          <div
+            style={{ color: 'black', textAlign: 'justify'}}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(modalContent?.description || ' News '),
+            }}
+          />
+        </Modal.Body>
+
 
       <Modal.Footer style={{ borderTop: '1px solid rgba(255,255,255,0.3)' }}>
         <Button 
