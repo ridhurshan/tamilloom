@@ -27,7 +27,7 @@ function Home() {
   const { world, local, business, technology, health, events, sports, cinema, 
           feature, ad, loading, error } = news;
 
-  const INITIAL_BATCH_SIZE = 80;
+  const INITIAL_BATCH_SIZE = 50;
 
   const fetchNewsData = () => {
     const cached = sessionStorage.getItem('newsData');

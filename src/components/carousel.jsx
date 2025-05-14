@@ -1,6 +1,8 @@
 import Carousel from 'react-bootstrap/Carousel';
 import { useDispatch } from 'react-redux';
 import { showModal } from '../redux/store/modalSlice';
+import DOMPurify from 'dompurify';
+
 
 function UncontrolledCarousel({ world }) {
   const dispatch = useDispatch();
@@ -41,14 +43,29 @@ function UncontrolledCarousel({ world }) {
                 {i.mydate}<br></br>
                 {i.title?.length > 100? i.title.slice(0, 100) + "...": i.title}
               </h3>
-              <p
+              {/* <p
                 style={{
                         fontSize: '0.9rem',
                         padding: '5px 10px',
                         background: 'rgba(0, 0, 0, 0.6)',
                       }}>
                       {i.description?.length > 100? i.description.slice(0, 100) + "...": i.description}
-                      </p>
+                      </p> */}
+                      <div
+                        style={{
+                          fontSize: '0.9rem',
+                          padding: '5px 10px',
+                          background: 'rgba(0, 0, 0, 0.6)',
+                          textAlign: 'justify',
+                          color: 'white',
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: DOMPurify.sanitize(
+                            (i.description?.replace(/<[^>]+>/g, '') || 'TamilLOom').slice(0, 100) +
+                            (i.description?.replace(/<[^>]+>/g, '').length > 100 ? '...' : '')
+                          ),                          
+                        }}
+                      ></div>
             </Carousel.Caption>
           </Carousel.Item>
         );
